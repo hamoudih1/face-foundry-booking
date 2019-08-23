@@ -20,7 +20,17 @@
                 <div class="row">
                     <div class="col-12 times-container">
                         <app-time-item *ngFor="let item of timeItems"
-                            [timeItem]="item"></app-time-item>
+                            [timeItem]="item"
+                            (click)="onSelect(item)"></app-time-item>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="next-button">
+                            <a href="#">
+                                <button class="btn btn-primary btn-lg" (click)="onSubmit()">Next</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

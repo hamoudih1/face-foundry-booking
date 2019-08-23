@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-payment',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentComponent implements OnInit {
 
+  @ViewChild('paymentForm', {static : true}) paymentForm: NgForm;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  onSubmit(){
+    console.log(this.paymentForm);
+  }
 }

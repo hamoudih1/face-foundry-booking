@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-date',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DateComponent implements OnInit {
 
-  constructor() { }
+  currentDate: Date = null;
+
+  constructor(private appService: AppService) { }
 
   ngOnInit() {
   }
-
+  onSubmit() {
+    if(this.currentDate== null) {
+      console.log("please pick a date");
+    }
+    else {
+      console.log(this.currentDate);
+      this.appService.reviewItem.date = this.currentDate;
+    }
+  }
 }

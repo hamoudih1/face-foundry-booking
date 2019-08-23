@@ -16,11 +16,12 @@ export class LogInSignUpComponent implements OnInit {
   }
 
   onSubmit(postData, form: string) {
-    console.log(postData);
     if (form == "login") {
+      console.log(this.loginForm);
       this.loginForm.reset();
     }
     else {
+      console.log(this.signupForm);
       this.signupForm.reset();
     }
   }

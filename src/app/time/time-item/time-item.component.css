@@ -1,6 +1,10 @@
 .time-item {
     width: 100px;
-    padding: 10px;
     margin: 30px;
     border: 1px #000 solid;
+}
+
+.time-item a {
+    width: 100%;
+    padding: 10px;
 }

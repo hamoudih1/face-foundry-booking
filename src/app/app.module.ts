@@ -15,6 +15,9 @@ import { ReviewComponent } from './review/review.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ThankYouComponent } from './thank-you/thank-you.component';
 import { TimeItemComponent } from './time/time-item/time-item.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LocationItemComponent } from './location/location-item/location-item.component';
+import { ServiceItemComponent } from './services/service-item/service-item.component';
 
 @NgModule({
   declarations: [
@@ -30,11 +33,14 @@ import { TimeItemComponent } from './time/time-item/time-item.component';
     ReviewComponent,
     PaymentComponent,
     ThankYouComponent,
-    TimeItemComponent
+    TimeItemComponent,
+    LocationItemComponent,
+    ServiceItemComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

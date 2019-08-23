@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceItem } from '../models/service.model';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-services',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServicesComponent implements OnInit {
 
-  constructor() { }
+  serviceItems: ServiceItem[];
+  currentServiceItem: ServiceItem = null;
+
+  constructor(private appService: AppService) { }
 
   ngOnInit() {
+    this.serviceItems = this.appService.serviceItems;
   }
 
+  onSelect(serviceItem: ServiceItem) {
+    this.currentServiceItem = serviceItem;
+  }
+
+  onSubmit() {
+    if(this.currentServiceItem == null) {
+      console.log("please select a service");
+    }
+    else {
+      console.log(this.currentServiceItem);
+      this.appService.reviewItem.service = this.currentServiceItem;
+    }
+  }
 }

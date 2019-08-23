@@ -13,30 +13,17 @@
                     </div>
                 </div>
                 <div class="row locations-container">
-                    <div class="col-sm-6">
-                        <div class="location-item">
-                            <img src="../assets/images/location-filler.jpg" alt="Location">
-                            <div class="location-info">
-                                <h3>Edina</h3>
-                                <span>Filler Address</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="location-item">
-                            <img src="../assets/images/location-filler.jpg" alt="Location">
-                            <div class="location-info">
-                                <h3>Edina</h3>
-                                <span>Filler Address</span>
-                            </div>
-                        </div>
+                    <div class="col-sm-6" *ngFor="let item of locationItems">
+                        <app-location-item
+                            [locationItem]="item"
+                            (click)="onSelect(item)"></app-location-item>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="next-button">
                             <a href="#">
-                                <button class="btn btn-primary btn-lg">Next</button>
+                                <button class="btn btn-primary btn-lg" (click)="onSubmit()">Next</button>
                             </a>
                         </div>
                     </div>

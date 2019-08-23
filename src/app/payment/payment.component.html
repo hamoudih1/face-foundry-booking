@@ -52,15 +52,6 @@
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="credit card">Credit Card Number:</label>
-                                        <input type="number" name="card" id="payment-card" class="form-control" required ngModel #paymentSecurity="ngModel">
-                                        <span class="help-block" *ngIf="!paymentSecurity.valid && paymentSecurity.touched">Please enter your card</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
                                     <div class="form-button">
                                         <button type="submit" class="btn btn-primary btn-lg" [disabled]="!paymentForm.valid">Pay</button>
                                     </div>

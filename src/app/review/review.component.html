@@ -18,37 +18,37 @@
                             <div class="review-item">
                                 <div class="review-content">
                                     <span>Location: </span>
-                                    <span>DUMMY</span>
+                                    <span>{{reviewLocation}}</span>
                                 </div>
                             </div>
                             <div class="review-item">
                                 <div class="review-content">
                                     <span>Service: </span>
-                                    <span>DUMMY</span>
+                                    <span>{{reviewService}}</span>
                                 </div>
                             </div>
                             <div class="review-item">
                                 <div class="review-content">
                                     <span>Number of people: </span>
-                                    <span>DUMMY</span>
+                                    <span>{{reviewPeople}}</span>
                                 </div>
                             </div>
                             <div class="review-item">
                                 <div class="review-content">
                                     <span>Esthtician: </span>
-                                    <span>DUMMY</span>
+                                    <span>{{reviewstaff}}</span>
                                 </div>
                             </div>
                             <div class="review-item">
                                 <div class="review-content">
                                     <span>Date: </span>
-                                    <span>DUMMY</span>
+                                    <span>{{reviewDate}}</span>
                                 </div>
                             </div>
                             <div class="review-item">
                                 <div class="review-content">
                                     <span>Time: </span>
-                                    <span>DUMMY</span>
+                                    <span>{{reviewTime}}</span>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                     <div class="col-12">
                         <div class="next-button">
                             <a href="#">
-                                <button class="btn btn-primary btn-lg">Confirm</button>
+                                <button class="btn btn-primary btn-lg" (click)="onSubmit()">Confirm</button>
                             </a>
                         </div>
                     </div>
