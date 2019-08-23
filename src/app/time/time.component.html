@@ -1,1 +1,29 @@
-<p>time works!</p>
+<section class="time-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <app-navigation></app-navigation>
+            </div>
+            <div class="col-9 main">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-header">
+                            <h2>Select a Time</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h3>Available:</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 times-container">
+                        <app-time-item *ngFor="let item of timeItems"
+                            [timeItem]="item"></app-time-item>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,8 @@
+.time-section {
+    text-align: center;
+}
+.times-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}

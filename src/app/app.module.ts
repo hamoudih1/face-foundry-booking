@@ -14,6 +14,7 @@ import { TimeComponent } from './time/time.component';
 import { ReviewComponent } from './review/review.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ThankYouComponent } from './thank-you/thank-you.component';
+import { TimeItemComponent } from './time/time-item/time-item.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ThankYouComponent } from './thank-you/thank-you.component';
     TimeComponent,
     ReviewComponent,
     PaymentComponent,
-    ThankYouComponent
+    ThankYouComponent,
+    TimeItemComponent
   ],
   imports: [
     BrowserModule,

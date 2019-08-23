@@ -1,1 +1,75 @@
-<p>payment works!</p>
+<section class="payment-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <app-navigation></app-navigation>
+            </div>
+            <div class="col-9 main">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-header">
+                            <h2>Payment</h2>
+                            <p>We need a credit card in order to hold your appointment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <form (ngSubmit)="onSubmit(paymentForm.value)" #paymentForm="ngForm" class="payment-form">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="name">Cardholder Name:</label>
+                                        <input type="text" name="name" id="payment-name" class="form-control" required ngModel #paymentName="ngModel">
+                                        <span class="help-block" *ngIf="!paymentName.valid && paymentName.touched">Please enter cardholder name</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="credit card">Credit Card Number:</label>
+                                        <input type="number" name="card" id="payment-card" class="form-control" required ngModel #paymentSecurity="ngModel">
+                                        <span class="help-block" *ngIf="!paymentSecurity.valid && paymentSecurity.touched">Please enter your card</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="expiration">Expiration Date:</label>
+                                        <input type="date" name="expiration" id="payment-expiration" class="form-control" required ngModel #paymentExpiration="ngModel">
+                                        <span class="help-block" *ngIf="!paymentExpiration.valid && paymentExpiration.touched">Please enter your card's expiration date</span>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="security code">Security Code:</label>
+                                        <input type="number" name="security" id="payment-security" class="form-control" required ngModel #paymentSecurity="ngModel">
+                                        <span class="help-block" *ngIf="!paymentSecurity.valid && paymentSecurity.touched">Please enter your card</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="credit card">Credit Card Number:</label>
+                                        <input type="number" name="card" id="payment-card" class="form-control" required ngModel #paymentSecurity="ngModel">
+                                        <span class="help-block" *ngIf="!paymentSecurity.valid && paymentSecurity.touched">Please enter your card</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-button">
+                                        <button type="submit" class="btn btn-primary btn-lg" [disabled]="!paymentForm.valid">Pay</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

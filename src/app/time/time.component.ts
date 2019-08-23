@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-time',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimeComponent implements OnInit {
 
-  constructor() { }
+  timeItems: string[];
+
+  constructor(private appService: AppService) { }
 
   ngOnInit() {
+    this.timeItems = this.appService.timeItems;
   }
 
 }
