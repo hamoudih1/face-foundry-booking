@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -18,6 +19,19 @@ import { TimeItemComponent } from './time/time-item/time-item.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LocationItemComponent } from './location/location-item/location-item.component';
 import { ServiceItemComponent } from './services/service-item/service-item.component';
+
+const appRoutes: Routes = [
+  {path: '', component: LogInSignUpComponent},
+  {path: 'location', component: LocationComponent},
+  {path: 'services', component: ServicesComponent},
+  {path: 'staff', component: StaffComponent},
+  {path: 'date', component: DateComponent},
+  {path: 'time', component: TimeComponent},
+  {path: 'review', component: ReviewComponent},
+  {path: 'payment', component: PaymentComponent},
+  {path: 'thank-you', component: ThankYouComponent},
+]
+
 
 @NgModule({
   declarations: [
@@ -40,7 +54,8 @@ import { ServiceItemComponent } from './services/service-item/service-item.compo
   imports: [
     BrowserModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
