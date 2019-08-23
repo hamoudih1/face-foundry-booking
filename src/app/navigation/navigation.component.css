@@ -1,0 +1,14 @@
+.navigation-section {
+    border-left: 1px solid #000;
+}
+
+.nav {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+.nav a {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

@@ -1,0 +1,41 @@
+.staff-section {
+    text-align: center;
+}
+.people-select {
+    width: 100px;
+    margin: auto;
+    margin-bottom: 100px;
+}
+.people-select a {
+    display: block;
+    border-bottom: 1px #000 solid;
+    border-left: 1px #000 solid;
+    border-right: 1px #000 solid;
+    cursor: pointer;
+}
+.people-select a:first-child {
+    border-top: 1px #000 solid;
+}
+.staff-select {
+    width: 150px;
+    margin: auto;
+}
+.staff-select a {
+    display: block;
+    border-bottom: 1px #000 solid;
+    border-left: 1px #000 solid;
+    border-right: 1px #000 solid;
+    cursor: pointer;
+}
+.staff-select a:first-child {
+    border-top: 1px #000 solid;
+}
+.random {
+    width: 150px;
+    margin: auto;
+}
+.random a {
+    display: block;
+    border: 1px #000 solid;
+    cursor: pointer;
+}

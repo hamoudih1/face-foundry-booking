@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url("assets/animate.css");
+
+.main {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.next-button {
+    margin-top: 50px;
+}
+
+.section-header {
+    margin-bottom: 40px;
+}

@@ -1,0 +1,12 @@
+.review-section {
+    text-align: center;
+}
+.review-container {
+    width: 500px;
+    text-align: left !important;
+    margin: auto;
+}
+.review-item{
+    width: 100%;
+    padding: 20px;
+}

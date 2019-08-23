@@ -1,0 +1,16 @@
+.header-section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.logo img {
+    max-width: 200px;
+    height: auto;
+    object-fit: cover;
+}
+.nav-toggle {
+    float: right;
+    text-align: right;
+    position: relative;
+    width: fit-content;
+    right: 0 !important;
+}
