@@ -15,12 +15,12 @@ export class DateComponent implements OnInit {
   ngOnInit() {
   }
   onSubmit() {
-    if(this.currentDate== null) {
+    if(this.currentDate == null) {
       console.log("please pick a date");
     }
     else {
-      console.log(this.currentDate);
       this.appService.reviewItem.date = this.currentDate;
+      console.log(this.currentDate);
     }
   }
 }

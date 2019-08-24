@@ -15,7 +15,7 @@ export class ReviewComponent implements OnInit {
   reviewService: string;
   reviewPeople: number;
   reviewStaff: string;
-  reviewDate: Date;
+  reviewDate: string;
   reviewTime: string;
 
 
@@ -23,12 +23,24 @@ export class ReviewComponent implements OnInit {
 
   ngOnInit() {
     this.reviewItem = this.appService.reviewItem;
-    this.reviewLocation = this.reviewItem.location.name;
-    this.reviewService = this.reviewItem.service.name;
-    this.reviewPeople = this.reviewItem.staff.people;
-    this.reviewStaff = this.reviewItem.staff.staffName;
-    this.reviewDate = this.reviewItem.date;
-    this.reviewTime = this.reviewItem.time
+
+    if(this.reviewItem == null) {
+      this.reviewLocation = null;
+      this.reviewService = null;
+      this.reviewPeople = null;
+      this.reviewStaff = null
+      this.reviewTime = null;
+    }
+    else {
+      this.reviewLocation = this.reviewItem.location.name;
+      this.reviewService = this.reviewItem.service.name;
+      this.reviewPeople = this.reviewItem.staff.people;
+      this.reviewStaff = this.reviewItem.staff.staffName;
+      this.reviewDate = this.reviewItem.date.toDateString();
+      this.reviewTime = this.reviewItem.time;
+
+      console.log(this.reviewDate);
+    }    
   }
 
   onSubmit(){
