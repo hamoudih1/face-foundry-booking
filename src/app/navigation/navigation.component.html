@@ -3,14 +3,14 @@
         <div class="row">
             <div class="col-12">
                 <div class="nav">
-                    <a href="#">Login/Create Account</a>
-                    <a href="#">Location</a>
-                    <a href="#">Service</a>
-                    <a href="#">Esthetician</a>
-                    <a href="#">Date</a>
-                    <a href="#">Time</a>
-                    <a href="#">Review</a>
-                    <a href="#">Payment</a>
+                    <a [ngClass]="{'active' : currentActive == 0}">Login/Create Account</a>
+                    <a [ngClass]="{'active' : currentActive == 1}">Location</a>
+                    <a [ngClass]="{'active' : currentActive == 2}">Service</a>
+                    <a [ngClass]="{'active' : currentActive == 3}">Esthetician</a>
+                    <a [ngClass]="{'active' : currentActive == 4}">Date</a>
+                    <a [ngClass]="{'active' : currentActive == 5}">Time</a>
+                    <a [ngClass]="{'active' : currentActive == 6}">Review</a>
+                    <a [ngClass]="{'active' : currentActive == 7}">Payment</a>
                 </div>
             </div>
         </div>
