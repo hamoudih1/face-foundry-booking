@@ -8,10 +8,10 @@ import { LocationItem } from 'src/app/models/location.model';
 })
 export class LocationItemComponent implements OnInit {
   @Input('locationItem') locationItem: LocationItem;
+  @Input('active') active: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
   }
-
 }

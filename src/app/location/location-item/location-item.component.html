@@ -1,4 +1,5 @@
-<div class="location-item">
+<div class="location-item"
+    [ngClass]="{'active' : active}">
     <img src="{{locationItem.imgURL}}" alt="Location">
     <div class="location-info">
         <h3>{{locationItem.name}}</h3>

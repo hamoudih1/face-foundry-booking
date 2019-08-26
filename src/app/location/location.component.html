@@ -16,13 +16,16 @@
                     <div class="col-sm-6" *ngFor="let item of locationItems">
                         <app-location-item
                             [locationItem]="item"
-                            (click)="onSelect(item)"></app-location-item>
+                            (click)="onSelect(item)"
+                            [active]="isActive(item)">
+                        </app-location-item>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="next-button">
-                            <button class="btn btn-primary btn-lg" (click)="onSubmit()" routerLink="/services">Next</button>
+                            <button class="btn btn-primary btn-lg" (click)="onSubmit()" 
+                            routerLink="/services" [disabled]="currentLocationItem == null">Next</button>
                         </div>
                     </div>
                 </div>

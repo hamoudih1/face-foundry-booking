@@ -23,9 +23,18 @@ export class LocationComponent implements OnInit {
     this.currentLocationItem = location;
   }
 
+  isActive(location: LocationItem) {
+    if(this.currentLocationItem != null) {
+      return this.currentLocationItem.name == location.name;
+    }
+    else {
+      return false;
+    }
+  }
+
   onSubmit(){
     if(this.currentLocationItem == null){
-      console.log("please select a location");
+      console.log("Please select a location");
     }
     else {
       console.log(this.currentLocationItem);

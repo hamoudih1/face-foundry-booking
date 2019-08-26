@@ -9,8 +9,8 @@ import { ReviewItem } from './models/review.model';
 })
 export class AppService {
 
-  locationItems: LocationItem[] = [new LocationItem("Edina", "Filler Address", "../assets/images/location-filler.jpg"),
-    new LocationItem("North Loop (coming soon)", "Filler Address", "../assets/images/location-filler.jpg")];
+  locationItems: LocationItem[] = [new LocationItem("Edina", "3170 Galleria Edina, Minnesota 55435", "../assets/images/location-edina.jpg"),
+    new LocationItem("North Loop", "424 N Washington Ave Minneapolis, MN 55401", "../assets/images/location-north-loop.jpg")];
 
   serviceItems: ServiceItem[] = [new ServiceItem("Service Name 1", "Filler Description", "../assets/images/location-filler.jpg", 21),
     new ServiceItem("Service Name 2", "Filler Description", "../assets/images/location-filler.jpg", 34),
