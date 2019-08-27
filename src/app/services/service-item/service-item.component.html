@@ -1,9 +1,6 @@
-<div class="service-item">
+<div class="service-item" [ngClass]="{'active' : active}">
     <div class="row">
-        <div class="col-4">
-            <img src="{{serviceItem.imgURL}}" alt="Service">
-        </div>
-        <div class="col-7">
+        <div class="col-11">
             <div class="service-info">
                 <h3>{{serviceItem.name}}</h3>
                 <span>{{serviceItem.description}}</span>
@@ -11,7 +8,7 @@
         </div>
         <div class="col-1">
             <div class="price">
-                <span>${{serviceItem.price}}</span>
+                <p>${{serviceItem.price}}</p>
             </div>
         </div>
     </div>

@@ -7,9 +7,28 @@
     text-align: left;
     border: 1px #000 solid;
     padding-right: 30px;
+    transition-duration: .3s;
 }
 .service-item img {
     width: 100%;
     height: 100%;
     object-fit: fill;
+}
+.service-info,
+.price {
+    padding: 0 10px 0 10px;
+}
+.service-item:hover {
+    transform: scale(1.1);
+    transition-duration: .3s;
+}
+.service-item.active {
+    background-color: #000 !important;
+    transition-duration: .3s;
+}
+.service-item.active h3,
+.service-item.active p,
+.service-item.active span {
+    color: #fff !important;
+    transition-duration: .3s;
 }

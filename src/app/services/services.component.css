@@ -7,3 +7,11 @@
     flex-flow: column;
     justify-content: center;
 }
+.membership-info .btn {
+    width: 200px;
+    margin: auto;
+    margin-bottom: 100px;
+}
+.next-button {
+    margin-top: 0;
+}

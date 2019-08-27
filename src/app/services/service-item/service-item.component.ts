@@ -9,6 +9,7 @@ import { ServiceItem } from 'src/app/models/service.model';
 export class ServiceItemComponent implements OnInit {
 
   @Input('serviceItem') serviceItem: ServiceItem;
+  @Input('active') active: boolean = false;
 
   constructor() { }
 
