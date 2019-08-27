@@ -9,6 +9,8 @@ export class TimeItemComponent implements OnInit {
 
   @Input('timeItem') timeItem;
 
+  @Input('activeTime') activeTime: boolean;
+
   constructor() { }
 
   ngOnInit() {

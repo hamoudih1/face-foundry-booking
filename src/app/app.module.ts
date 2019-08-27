@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -16,7 +17,7 @@ import { ReviewComponent } from './review/review.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ThankYouComponent } from './thank-you/thank-you.component';
 import { TimeItemComponent } from './time/time-item/time-item.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { LocationItemComponent } from './location/location-item/location-item.component';
 import { ServiceItemComponent } from './services/service-item/service-item.component';
 
@@ -31,7 +32,6 @@ const appRoutes: Routes = [
   {path: 'payment', component: PaymentComponent},
   {path: 'thank-you', component: ThankYouComponent},
 ]
-
 
 @NgModule({
   declarations: [
@@ -49,15 +49,16 @@ const appRoutes: Routes = [
     ThankYouComponent,
     TimeItemComponent,
     LocationItemComponent,
-    ServiceItemComponent
+    ServiceItemComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     NgbModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

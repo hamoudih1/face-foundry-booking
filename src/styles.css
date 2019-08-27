@@ -60,3 +60,34 @@ P, input, textarea {
     color: red;
     font-size: 14px;
 }
+
+/* Calendar styles */
+.ngb-dp-navigation-chevron {
+    color: #000 !important;
+}
+.ngb-dp-day{
+    width: 100% !important;
+    height: 100% !important;
+    margin: auto !important;
+    text-align: center;
+    outline-width: 0;
+}
+.btn-light {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 15px;
+    margin: auto !important;
+    text-align: center;
+    outline-width: 0;
+}
+.btn-light.active {
+    background-color: #000 !important;
+}
+.ngb-dp-weekday{
+   width: 100% !important;
+   height: 100% !important;
+}
+.ngb-dp-month {
+   width: 100% !important;
+   height: 100% !important;
+}

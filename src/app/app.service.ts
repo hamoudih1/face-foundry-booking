@@ -3,6 +3,7 @@ import { LocationItem } from './models/location.model';
 import { ServiceItem } from './models/service.model';
 import { StaffItem } from './models/staff.model';
 import { ReviewItem } from './models/review.model';
+import { HttpClient } from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,5 @@ export class AppService {
 
   reviewItem: ReviewItem = new ReviewItem(null, null, null, null, null);
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 }

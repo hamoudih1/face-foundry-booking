@@ -15,10 +15,14 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="people-select">
-                            <a (click)="onSelectNumber(1)">Just Me</a>
-                            <a (click)="onSelectNumber(2)">2</a>
-                            <a (click)="onSelectNumber(3)">3</a>
-                            <a (click)="onSelectNumber(4)">4+</a>
+                            <select name="selectPeople" id="#selectPeople" (change)="onSelectPeople($event)" class="select-people">
+                                <option value="">Select</option>
+                                <option value="Single">Just Me</option>
+                                <option value="Group">Group</option>
+                            </select>
+                            <div class="people-message" *ngIf="showMessage">
+                                <p>Filler message</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -30,27 +34,32 @@
                     </div>
                 </div>
                 <div class="row">
-                        <div class="col-5">
-                            <div class="staff-select">
-                                <a *ngFor="let item of staffNames"
-                                    (click)="onSelectStaff(item)">{{item}}</a>
-                            </div>
+                    <div class="col-5">
+                        <div class="staff-select">
+                            <select name="selectStaff" id="#selectStaff" (change)="onSelectStaff($event)" #selectStaff>
+                                <option value="">Select</option>
+                                <option *ngFor="let item of staffNames" 
+                                        value="{{item}}"
+                                >{{item}}</option>
+                            </select>
                         </div>
-                        <div class="col-2">
-                            <div class="or">
-                                <span>OR</span>
-                            </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="or">
+                            <span>OR</span>
                         </div>
-                        <div class="col-5">
-                            <div class="random">
-                                <a (click)="onSelectAvailable()">First Available</a>
-                            </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="random">
+                            <a (click)="onSelectAvailable()"
+                            [ngClass]="{'active': currentStaffItem.firstAvaiable}">First Available</a>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="next-button">
-                            <button class="btn btn-primary btn-lg" (click)="onSubmit()" routerLink="/date">Next</button>
+                            <button class="btn btn-primary btn-lg" (click)="onSubmit()" routerLink="/date" [disabled]="!nextEnabled()">Next</button>
                         </div>
                     </div>
                 </div>

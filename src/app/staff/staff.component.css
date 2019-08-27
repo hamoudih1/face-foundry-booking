@@ -4,7 +4,7 @@
 .people-select {
     width: 100px;
     margin: auto;
-    margin-bottom: 100px;
+    margin-bottom: 70px;
 }
 .people-select a {
     display: block;
@@ -12,6 +12,9 @@
     border-left: 1px #000 solid;
     border-right: 1px #000 solid;
     cursor: pointer;
+}
+.people-select select {
+    margin-bottom: 30px;
 }
 .people-select a:first-child {
     border-top: 1px #000 solid;
@@ -38,4 +41,14 @@
     display: block;
     border: 1px #000 solid;
     cursor: pointer;
+    transition-duration: .3s;
+}
+.random a.active {
+    background-color: #000;
+    color: #fff;
+    transition-duration: .3s;
+}
+.random a:hover{
+    transform: scale(1.1);
+    transition-duration: .3s;
 }

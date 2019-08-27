@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AppService } from '../app.service';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-date',
@@ -8,7 +9,7 @@ import { AppService } from '../app.service';
 })
 export class DateComponent implements OnInit {
 
-  currentDate: Date = null;
+  currentDate: NgbDate = null;
 
   constructor(private appService: AppService) { }
 

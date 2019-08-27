@@ -2,9 +2,24 @@
     width: 100px;
     margin: 30px;
     border: 1px #000 solid;
+    cursor: pointer;
+    transition-duration: .3s;
 }
 
 .time-item a {
     width: 100%;
     padding: 10px;
+    transition-duration: .3s;
+}
+.time-item.active {
+    background-color: #000;
+    transition-duration: .3s;
+}
+.time-item.active a{
+    color: #fff;
+    transition-duration: .3s;
+}
+.time-item:hover {
+    transform: scale(1.1);
+    transition-duration: .3s;
 }

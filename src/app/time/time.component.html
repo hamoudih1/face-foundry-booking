@@ -21,13 +21,14 @@
                     <div class="col-12 times-container">
                         <app-time-item *ngFor="let item of timeItems"
                             [timeItem]="item"
-                            (click)="onSelect(item)"></app-time-item>
+                            (click)="onSelect(item)"
+                            [activeTime]="isActive(item)"></app-time-item>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="next-button">
-                            <button class="btn btn-primary btn-lg" (click)="onSubmit()" routerLink="/review">Next</button>
+                            <button class="btn btn-primary btn-lg" (click)="onSubmit()" routerLink="/review" [disabled]="currentTime == null">Next</button>
                         </div>
                     </div>
                 </div>

@@ -21,7 +21,7 @@
                                     <div class="form-group">
                                         <label for="name">Cardholder Name:</label>
                                         <input type="text" name="name" id="payment-name" class="form-control" required ngModel #paymentName="ngModel">
-                                        <span class="help-block" *ngIf="!paymentName.valid && paymentName.touched">Please enter cardholder name</span>
+                                        <span class="help-block" *ngIf="!paymentName.valid && paymentName.touched">Please enter the cardholder name</span>
                                     </div>
                                 </div>
                             </div>
@@ -30,7 +30,7 @@
                                     <div class="form-group">
                                         <label for="credit card">Credit Card Number:</label>
                                         <input type="number" name="card" id="payment-card" class="form-control" required ngModel #paymentSecurity="ngModel">
-                                        <span class="help-block" *ngIf="!paymentSecurity.valid && paymentSecurity.touched">Please enter your card</span>
+                                        <span class="help-block" *ngIf="!paymentSecurity.valid && paymentSecurity.touched">Please enter your credit card number</span>
                                     </div>
                                 </div>
                             </div>
@@ -38,15 +38,15 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="expiration">Expiration Date:</label>
-                                        <input type="date" name="expiration" id="payment-expiration" class="form-control" required ngModel #paymentExpiration="ngModel">
-                                        <span class="help-block" *ngIf="!paymentExpiration.valid && paymentExpiration.touched">Please enter your card's expiration date</span>
+                                        <input type="date" name="expiration" id="payment-expiration" class="form-control date" required ngModel #paymentExpiration="ngModel">
+                                        <span class="help-block" *ngIf="!paymentExpiration.valid && paymentExpiration.touched">Please enter your credit card's expiration date</span>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="security code">Security Code:</label>
                                         <input type="number" name="security" id="payment-security" class="form-control" required ngModel #paymentSecurity="ngModel">
-                                        <span class="help-block" *ngIf="!paymentSecurity.valid && paymentSecurity.touched">Please enter your card</span>
+                                        <span class="help-block" *ngIf="!paymentSecurity.valid && paymentSecurity.touched">Please enter your credit card security code</span>
                                     </div>
                                 </div>
                             </div>

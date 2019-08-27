@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { StaffItem } from '../models/staff.model';
 import { AppService } from '../app.service';
 
@@ -9,7 +9,11 @@ import { AppService } from '../app.service';
 })
 export class StaffComponent implements OnInit {
 
+  @ViewChild('selectStaff', {static: true}) selectStaff : ElementRef;
+
   staffNames: string[];
+
+  showMessage: boolean = false;
 
   currentStaffItem: StaffItem = new StaffItem(null, null, false);
 
@@ -18,25 +22,35 @@ export class StaffComponent implements OnInit {
   ngOnInit() {
     this.staffNames = this.appService.staffNames;
   }
-  onSelectNumber(numberOfPeople: number) {
-    this.currentStaffItem.people = numberOfPeople;
+  onSelectPeople(event: any) {
+    this.currentStaffItem.people = event.target.value;
+    this.showMessage = true;
   }
-  onSelectStaff(staffName: string) {
-    this.currentStaffItem.staffName = staffName;
+  onSelectStaff(event: any) {
+    this.currentStaffItem.staffName = event.target.value;
     this.currentStaffItem.firstAvaiable = false;
   }
   onSelectAvailable() {
     this.currentStaffItem.staffName = null;
     this.currentStaffItem.firstAvaiable = true;
+    this.selectStaff.nativeElement.value = "";
+  }
+
+  nextEnabled() {
+    if(this.currentStaffItem == null) {
+      return false;
+    }
+    else if(this.currentStaffItem.people == null || this.currentStaffItem.people == "" ||
+      ((this.currentStaffItem.staffName == null || this.currentStaffItem.staffName == "") && 
+      this.currentStaffItem.firstAvaiable == false)) {
+      return false
+    }
+    else {
+      return true;
+    }
   }
   onSubmit() {
-    if (this.currentStaffItem.people == null || 
-      (this.currentStaffItem.staffName == null && this.currentStaffItem.firstAvaiable == false)) {
-        console.log("please enter required info");
-      }
-    else {
-      console.log(this.currentStaffItem);
-      this.appService.reviewItem.staff = this.currentStaffItem;
-    }
+    console.log(this.currentStaffItem);
+    this.appService.reviewItem.staff = this.currentStaffItem;
   }
 }

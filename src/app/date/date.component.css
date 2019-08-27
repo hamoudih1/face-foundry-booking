@@ -1,3 +1,23 @@
 .date-section {
     text-align: center;
 }
+
+ngb-datepicker {
+    width: 100%;
+    height: auto;
+    text-align: center !important;
+    margin-top: 20px;
+}
+.ngb-dp-day{
+    width: 100% !important;
+    height: 100% !important;
+  }
+.ngb-dp-week{
+   width: 100% !important;
+   height: 100% !important;
+}
+.ngb-dp-month {
+   width: 100% !important;
+   height: 100% !important;
+   display: none !important;
+}

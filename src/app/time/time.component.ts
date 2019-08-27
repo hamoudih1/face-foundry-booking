@@ -19,6 +19,14 @@ export class TimeComponent implements OnInit {
   onSelect(time: string) {
     this.currentTime = time;    
   }
+  isActive(time: string){
+    if (this.currentTime == time) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
   onSubmit() {
     if(this.currentTime == null){
       console.log("please select a time");
