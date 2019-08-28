@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CreditCardValidator } from 'angular-cc-library';
 
 @Component({
   selector: 'app-payment',
@@ -12,10 +13,9 @@ export class PaymentComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
-  onSubmit(){
-    console.log(this.paymentForm);
+  onSubmit(form){
+    console.log(form);
   }
 }

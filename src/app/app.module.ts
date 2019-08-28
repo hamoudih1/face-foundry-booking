@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { CreditCardDirectivesModule } from 'angular-cc-library'
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -56,7 +57,8 @@ const appRoutes: Routes = [
     FormsModule,
     NgbModule,
     RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
+    CreditCardDirectivesModule
   ],
   providers: [],
   bootstrap: [AppComponent],
