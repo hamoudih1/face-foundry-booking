@@ -22,6 +22,7 @@ import { NgbModule, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { LocationItemComponent } from './location/location-item/location-item.component';
 import { ServiceItemComponent } from './services/service-item/service-item.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { MustMatchDirective } from './validators/must-match.directive';
 
 const appRoutes: Routes = [
   {path: '', component: WelcomeComponent},
@@ -54,6 +55,7 @@ const appRoutes: Routes = [
     LocationItemComponent,
     ServiceItemComponent,
     WelcomeComponent,
+    MustMatchDirective,
   ],
   imports: [
     BrowserModule,

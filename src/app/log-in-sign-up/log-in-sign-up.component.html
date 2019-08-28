@@ -16,7 +16,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="email">Email:</label>
-                                            <input type="email" name="email" id="login-email" class="form-control" required ngModel #loginEmail="ngModel">
+                                            <input type="email" name="email" id="login-email" class="form-control" required ngModel email #loginEmail="ngModel">
                                             <span class="help-block" *ngIf="!loginEmail.valid && loginEmail.touched">Please enter your email</span>
                                         </div>
                                     </div>
@@ -45,7 +45,7 @@
                             <div class="section-header">
                                 <h2>Sign Up</h2>
                             </div>
-                            <form (ngSubmit)="onSubmit(signupForm.value, 'signup')" #signupForm="ngForm" class="signup-form">
+                            <form (ngSubmit)="onSubmit(signupForm.value, 'signup')" #signupForm="ngForm" class="signup-form" [mustMatch]="['signupPassword', 'signupConfirmPassword']">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
@@ -66,7 +66,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="signup-email">Email:</label>
-                                            <input type="email" name="signup-email" id="email-password" class="form-control" required ngModel #signupEmail="ngModel">
+                                            <input type="email" name="signup-email" id="email-password" class="form-control" required ngModel email #signupEmail="ngModel">
                                             <span class="help-block" *ngIf="!signupEmail.valid && signupEmail.touched">Please enter an email</span>
                                         </div>
                                     </div>
@@ -78,11 +78,12 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="password">Password:</label>
-                                            <input type="password" name="password" id="signup-password" class="form-control" required ngModel #signupPassword="ngModel">
+                                            <label for="signupPassword">Password:</label>
+                                            <input type="password" name="signupPassword" id="signupPassword" class="form-control" required #signupPassword="ngModel" [(ngModel)]="model.signupPassword">
                                             <span class="help-block" *ngIf="!signupPassword.valid && signupPassword.touched">Please enter a password</span>
                                         </div>
                                     </div> 
@@ -90,8 +91,8 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="password">Confirm Password:</label>
-                                            <input type="password" name="confirm-password" id="confirm-password" class="form-control" required ngModel #signupConfirmPassword="ngModel">
+                                            <label for="signupConfirmPassword">Confirm Password:</label>
+                                            <input type="password" name="signupConfirmPassword" id="signupConfirmPassword" class="form-control" required #signupConfirmPassword="ngModel" [(ngModel)]="model.signupConfirmPassword">
                                             <span class="help-block" *ngIf="!signupConfirmPassword.valid && signupConfirmPassword.touched">Must match password</span>
                                         </div>
                                     </div> 

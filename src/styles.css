@@ -56,6 +56,10 @@ P, input, textarea {
     cursor: auto;
 }
 
+.form-control {
+    border-radius: 0;
+}
+
 .help-block {
     color: red;
     font-size: 14px;

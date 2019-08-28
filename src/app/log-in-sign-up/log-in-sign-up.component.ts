@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnChanges, SimpleChange, SimpleChanges, DoCheck } from '@angular/core';
+import { Component, ViewChild, DoCheck } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,9 @@ import { NgForm, NgModel } from '@angular/forms';
   styleUrls: ['./log-in-sign-up.component.css']
 })
 export class LogInSignUpComponent implements DoCheck {
+
+  model: any = {};
+  
   @ViewChild('loginForm', {static: true}) loginForm: NgForm;
   @ViewChild('signupForm', {static: true}) signupForm: NgForm;
   @ViewChild('signupPassword', {static: true}) signupPasswordEl: NgModel;
