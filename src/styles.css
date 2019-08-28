@@ -80,7 +80,7 @@ P, input, textarea {
     text-align: center;
     outline-width: 0;
 }
-.btn-light.active {
+.btn-light.bg-primary {
     background-color: #000 !important;
 }
 .ngb-dp-weekday{

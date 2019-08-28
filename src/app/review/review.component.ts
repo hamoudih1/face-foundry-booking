@@ -21,6 +21,8 @@ export class ReviewComponent implements OnInit {
 
   displayDate: string;
 
+  incomplete: boolean = true;
+
 
   constructor(private appService: AppService) { }
 
@@ -29,9 +31,9 @@ export class ReviewComponent implements OnInit {
 
     if(this.reviewItem == null ||
       this.reviewItem.location == null ||
-      this.reviewItem.service == null,
-      this.reviewItem.staff == null,
-      this.reviewItem.date == null,
+      this.reviewItem.service == null ||
+      this.reviewItem.staff == null ||
+      this.reviewItem.date == null ||
       this.reviewItem.time == null) {
 
       this.reviewLocation = null;
@@ -41,6 +43,7 @@ export class ReviewComponent implements OnInit {
       this.reviewTime = null;
 
       this.displayDate = null;
+      this.incomplete = true;
     }
     else {
       this.reviewLocation = this.reviewItem.location.name;
@@ -51,6 +54,7 @@ export class ReviewComponent implements OnInit {
       this.reviewTime = this.reviewItem.time;
 
       this.displayDate = this.reviewDate.month + "-" + this.reviewDate.day + "-" + this.reviewDate.year;
+      this.incomplete = false;
     }    
   }
 

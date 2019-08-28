@@ -21,9 +21,11 @@ import { TimeItemComponent } from './time/time-item/time-item.component';
 import { NgbModule, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { LocationItemComponent } from './location/location-item/location-item.component';
 import { ServiceItemComponent } from './services/service-item/service-item.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 const appRoutes: Routes = [
-  {path: '', component: LogInSignUpComponent},
+  {path: '', component: WelcomeComponent},
+  {path: 'start', component: LogInSignUpComponent},
   {path: 'location', component: LocationComponent},
   {path: 'services', component: ServicesComponent},
   {path: 'staff', component: StaffComponent},
@@ -51,6 +53,7 @@ const appRoutes: Routes = [
     TimeItemComponent,
     LocationItemComponent,
     ServiceItemComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,

@@ -24,7 +24,12 @@ export class StaffComponent implements OnInit {
   }
   onSelectPeople(event: any) {
     this.currentStaffItem.people = event.target.value;
-    this.showMessage = true;
+    if (this.currentStaffItem.people == "Group") {
+      this.showMessage = true;
+    }
+    else {
+      this.showMessage = false;
+    }
   }
   onSelectStaff(event: any) {
     this.currentStaffItem.staffName = event.target.value;
