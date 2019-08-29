@@ -15,8 +15,8 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="email">Email:</label>
-                                            <input type="email" name="email" id="login-email" class="form-control" required ngModel email #loginEmail="ngModel">
+                                            <label for="loginEmail">Email:</label>
+                                            <input type="email" name="loginEmail" id="login-email" class="form-control" required ngModel email #loginEmail="ngModel">
                                             <span class="help-block" *ngIf="!loginEmail.valid && loginEmail.touched">Please enter your email</span>
                                         </div>
                                     </div>
@@ -24,8 +24,8 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="password">Password:</label>
-                                            <input type="password" name="password" id="login-password" class="form-control" required ngModel #loginPassword="ngModel">
+                                            <label for="loginPassword">Password:</label>
+                                            <input type="password" name="loginPassword" id="login-password" class="form-control" required ngModel #loginPassword="ngModel">
                                             <span class="help-block" *ngIf="!loginPassword.valid && loginPassword.touched">Please enter your password</span>
                                         </div>
                                     </div>
@@ -33,7 +33,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-button">
-                                            <button type="submit" class="btn btn-primary btn-lg" [disabled]="!loginForm.valid" routerLink="/location">Submit</button>
+                                            <button type="submit" class="btn btn-primary btn-lg" [disabled]="!loginForm.valid">Submit</button>
                                         </div>
                                     </div>
                                 </div>

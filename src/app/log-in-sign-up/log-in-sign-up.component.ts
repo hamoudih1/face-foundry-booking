@@ -1,6 +1,7 @@
 import { Component, ViewChild, DoCheck } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { AppService } from '../app.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-log-in-sign-up',
@@ -14,16 +15,39 @@ export class LogInSignUpComponent {
   @ViewChild('loginForm', {static: true}) loginForm: NgForm;
   @ViewChild('signupForm', {static: true}) signupForm: NgForm;
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, private router: Router) { }
 
   onSubmit(postData, form: string) {
-    this.appService.endpoint = "http://127.0.0.1:5002/create";
+    let jsonData: any
+
     if (form == "login") {
-      console.log(this.loginForm);
+      this.appService.endpoint = "http://127.0.0.1:5002/login"
+      
+      jsonData = {
+        "Password": postData.loginPassword,
+        "FirstName": postData.firstName,
+        "LastName": postData.lastName,
+        "CellPhone": postData.signupPhone,
+        "Email": postData.loginEmail,
+        "AllowReceiveEmails": true,
+        "AllowReceivePromotionalEmails": true,
+        "AllowReceiveSMS": true,
+        "RequireCustomerPhone": true,
+        "RequireCustomerAddress": true,
+        "access_token": this.appService.access_token,
+        "LocationID": 38698
+      };
+
+      this.appService.onPost(jsonData);
+      console.log(jsonData);
       this.loginForm.reset();
+
+      this.router.navigate(['/location']);
     }
     else {
-      let jsonData: any = {
+      this.appService.endpoint = "http://127.0.0.1:5002/create";
+
+      jsonData = {
         "Password": postData.signupPassword,
         "FirstName": postData.firstName,
         "LastName": postData.lastName,
@@ -38,12 +62,11 @@ export class LogInSignUpComponent {
         "LocationID": 38698
       };
 
-      //let realJSON = JSON.parse(jsonData);
       this.appService.onPost(jsonData);
       console.log(jsonData);
-      
-
       this.signupForm.reset();
+
+      this.router.navigate(['/location']);
     }
   }
 }
