@@ -10,7 +10,7 @@ import { AppService } from '../app.service';
 export class ServicesComponent implements OnInit {
 
   serviceItems: ServiceItem[];
-  currentServiceItem: ServiceItem = null;
+  currentServiceItems: ServiceItem[] = [];
 
   constructor(private appService: AppService) { }
 
@@ -19,12 +19,25 @@ export class ServicesComponent implements OnInit {
   }
 
   onSelect(serviceItem: ServiceItem) {
-    this.currentServiceItem = serviceItem;
+    if (this.currentServiceItems.includes(serviceItem)) {
+      let index:number = 0;
+      for(let i of this.currentServiceItems) {
+        if(i.name == serviceItem.name) {
+          this.currentServiceItems.splice(index,1);
+        }
+        else {
+          index ++;
+        }
+      }
+    }
+    else {
+      this.currentServiceItems.push(serviceItem);
+    }
   }
 
-  isActive(service: ServiceItem) {
-    if(this.currentServiceItem != null) {
-      return this.currentServiceItem.name == service.name;
+  isActive(serviceItem: ServiceItem) {
+    if(this.currentServiceItems != []) {
+      return this.currentServiceItems.includes(serviceItem);
     }
     else {
       return false;
@@ -32,12 +45,12 @@ export class ServicesComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.currentServiceItem == null) {
+    if(this.currentServiceItems == []) {
       console.log("please select a service");
     }
     else {
-      console.log(this.currentServiceItem);
-      this.appService.reviewItem.service = this.currentServiceItem;
+      console.log(this.currentServiceItems);
+      this.appService.reviewItem.service = this.currentServiceItems;
     }
   }
 }

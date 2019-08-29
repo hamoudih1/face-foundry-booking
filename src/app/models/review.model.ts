@@ -5,12 +5,12 @@ import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
 export class ReviewItem {
     location: LocationItem;
-    service: ServiceItem;
+    service: ServiceItem[];
     staff: StaffItem;
     date: NgbDate;
     time: string;
 
-    constructor(location: LocationItem, service: ServiceItem, staff: StaffItem, date: NgbDate, time: string) {
+    constructor(location: LocationItem, service: ServiceItem[], staff: StaffItem, date: NgbDate, time: string) {
         this.location = location;
         this.service = service;
         this.staff = staff;

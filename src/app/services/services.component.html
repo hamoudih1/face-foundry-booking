@@ -24,7 +24,7 @@
                     <div class="col-12">
                         <div class="next-button">
                             <button class="btn btn-primary btn-lg" (click)="onSubmit()" 
-                            routerLink="/staff" [disabled]="currentServiceItem == null">Next</button>
+                            routerLink="/staff" [disabled]="currentServiceItems == []">Next</button>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,9 @@
             <div class="col-3"></div>
             <div class="col-9 memberships">
                 <div class="membership-info">
-                    <button class="btn btn-primary btn-md">Memberships</button>
+                    <a href="https://thefacefoundry.com/membership" target="_blank">
+                        <button class="btn btn-primary btn-md">Memberships</button>
+                    </a>
                 </div>
             </div>
         </div>
