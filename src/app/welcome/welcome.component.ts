@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
 import { Config } from 'protractor';
+import { Router } from '@angular/router';
+import { RouteService } from '../route.service';
 
 @Component({
   selector: 'app-welcome',
@@ -12,7 +14,7 @@ export class WelcomeComponent implements OnInit {
   token: any;
   tokenString: string;
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, private router: Router, private routerService: RouteService) { }
 
   ngOnInit() {
   }
@@ -20,6 +22,8 @@ export class WelcomeComponent implements OnInit {
   onSubmit() {
     this.appService.endpoint ="http://127.0.0.1:5002/start";
     this.showConfig();
+    this.routerService.canAdvance();
+    this.router.navigate(['/start']);
   }
 
   showConfig() {

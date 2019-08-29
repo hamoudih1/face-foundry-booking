@@ -4,6 +4,7 @@ import {FormsModule} from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { CreditCardDirectivesModule } from 'angular-cc-library'
+import { NgbModule, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -18,23 +19,24 @@ import { ReviewComponent } from './review/review.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ThankYouComponent } from './thank-you/thank-you.component';
 import { TimeItemComponent } from './time/time-item/time-item.component';
-import { NgbModule, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { LocationItemComponent } from './location/location-item/location-item.component';
 import { ServiceItemComponent } from './services/service-item/service-item.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+
 import { MustMatchDirective } from './validators/must-match.directive';
+import { RouteGuard } from './route.guard';
 
 const appRoutes: Routes = [
   {path: '', component: WelcomeComponent},
-  {path: 'start', component: LogInSignUpComponent},
-  {path: 'location', component: LocationComponent},
-  {path: 'services', component: ServicesComponent},
-  {path: 'staff', component: StaffComponent},
-  {path: 'date', component: DateComponent},
-  {path: 'time', component: TimeComponent},
-  {path: 'review', component: ReviewComponent},
-  {path: 'payment', component: PaymentComponent},
-  {path: 'thank-you', component: ThankYouComponent},
+  {path: 'start', component: LogInSignUpComponent, canActivate: [RouteGuard]},
+  {path: 'location', component: LocationComponent, canActivate: [RouteGuard]},
+  {path: 'services', component: ServicesComponent, canActivate: [RouteGuard]},
+  {path: 'staff', component: StaffComponent, canActivate: [RouteGuard]},
+  {path: 'date', component: DateComponent, canActivate: [RouteGuard]},
+  {path: 'time', component: TimeComponent, canActivate: [RouteGuard]},
+  {path: 'review', component: ReviewComponent, canActivate: [RouteGuard]},
+  {path: 'payment', component: PaymentComponent, canActivate: [RouteGuard]},
+  {path: 'thank-you', component: ThankYouComponent, canActivate: [RouteGuard]},
 ]
 
 @NgModule({

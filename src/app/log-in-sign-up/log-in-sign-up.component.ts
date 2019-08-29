@@ -2,6 +2,7 @@ import { Component, ViewChild, DoCheck } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { AppService } from '../app.service';
 import { Router } from '@angular/router';
+import { RouteService } from '../route.service';
 
 @Component({
   selector: 'app-log-in-sign-up',
@@ -15,7 +16,11 @@ export class LogInSignUpComponent {
   @ViewChild('loginForm', {static: true}) loginForm: NgForm;
   @ViewChild('signupForm', {static: true}) signupForm: NgForm;
 
-  constructor(private appService: AppService, private router: Router) { }
+  constructor(private appService: AppService, private router: Router, private routeService: RouteService) { }
+
+  ngOnInit() {
+    this.routeService.blockRoute();
+  }
 
   onSubmit(postData, form: string) {
     let jsonData: any
@@ -42,6 +47,7 @@ export class LogInSignUpComponent {
       console.log(jsonData);
       this.loginForm.reset();
 
+      this.routeService.canAdvance();
       this.router.navigate(['/location']);
     }
     else {
@@ -65,7 +71,8 @@ export class LogInSignUpComponent {
       this.appService.onPost(jsonData);
       console.log(jsonData);
       this.signupForm.reset();
-
+      
+      this.routeService.canAdvance();
       this.router.navigate(['/location']);
     }
   }
