@@ -10,6 +10,10 @@ import { HttpClient } from '@angular/common/http'
 })
 export class AppService {
 
+  endpoint = "http://127.0.0.1:5002/start";
+
+  access_token: string = '';
+
   locationItems: LocationItem[] = [new LocationItem("Edina", "3170 Galleria Edina, Minnesota 55435", "../assets/images/location-edina.jpg"),
     new LocationItem("North Loop", "424 N Washington Ave Minneapolis, MN 55401", "../assets/images/location-north-loop.jpg")];
 
@@ -24,4 +28,15 @@ export class AppService {
   reviewItem: ReviewItem = new ReviewItem(null, [], null, null, null);
 
   constructor(private http: HttpClient) { }
+
+  getConfig() {
+    return this.http.get(this.endpoint);
+  }
+
+  onPost(postData: {}){
+    this.http.post(this.endpoint, postData)
+      .subscribe(responseData => {
+        console.log(responseData);
+      });
+  }
 }

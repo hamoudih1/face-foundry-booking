@@ -49,15 +49,15 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="name">First Name:</label>
-                                            <input type="text" name="first-name" id="signup-first-name" class="form-control" required ngModel #signupFirstName="ngModel">
+                                            <label for="firstName">First Name:</label>
+                                            <input type="text" name="firstName" id="firstName" class="form-control" required ngModel #signupFirstName="ngModel">
                                             <span class="help-block" *ngIf="!signupFirstName.valid && signupFirstName.touched">Please enter a first name</span>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="name">Last Name:</label>
-                                            <input type="text" name="last-name" id="signup-last-name" class="form-control" required ngModel #signupLastName="ngModel">
+                                            <label for="lastName">Last Name:</label>
+                                            <input type="text" name="lastName" id="lastName" class="form-control" required ngModel #signupLastName="ngModel">
                                             <span class="help-block" *ngIf="!signupLastName.valid && signupLastName.touched">Please enter a last name</span>
                                         </div>
                                     </div>
@@ -65,26 +65,25 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="signup-email">Email:</label>
-                                            <input type="email" name="signup-email" id="email-password" class="form-control" required ngModel email #signupEmail="ngModel">
+                                            <label for="signupEmail">Email:</label>
+                                            <input type="email" name="signupEmail" id="signupEmail" class="form-control" required ngModel email #signupEmail="ngModel">
                                             <span class="help-block" *ngIf="!signupEmail.valid && signupEmail.touched">Please enter an email</span>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="phone">Phone:</label>
-                                            <input type="tel" name="signup-phone" id="signup-phone" class="form-control" required ngModel #signupPhone="ngModel">
+                                            <label for="signupPhone">Phone:</label>
+                                            <input type="tel" name="signupPhone" id="signupPhone" class="form-control" required ngModel #signupPhone="ngModel">
                                             <span class="help-block" *ngIf="!signupPhone.valid && signupPhone.touched">Please enter a phone number</span>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="signupPassword">Password:</label>
                                             <input type="password" name="signupPassword" id="signupPassword" class="form-control" required #signupPassword="ngModel" [(ngModel)]="model.signupPassword">
-                                            <span class="help-block" *ngIf="!signupPassword.valid && signupPassword.touched">Please enter a password</span>
+                                            <span class="help-block" *ngIf="!signupPassword.valid && signupPassword.touched">Please enter a password between 8 and 25 characters containing at least 1 letter and 1 number </span>
                                         </div>
                                     </div> 
                                 </div>
@@ -100,7 +99,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-button">
-                                            <button type="submit" class="btn btn-primary btn-lg" [disabled]="!signupForm.valid" routerLink="/location">Submit</button>
+                                            <button type="submit" class="btn btn-primary btn-lg" [disabled]="!signupForm.valid" >Submit</button>
                                         </div>
                                     </div>
                                 </div>
