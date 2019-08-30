@@ -49,8 +49,13 @@ export class ServicesComponent implements OnInit {
       console.log("please select a service");
     }
     else {
+      let locationID: number;
       console.log(this.currentServiceItems);
       this.appService.reviewItem.service = this.currentServiceItems;
+
+      this.appService.endpoint = "http://127.0.0.1:5002/treatments"
+      // locationID = this.appService.reviewItem.location.locationID;
+      this.appService.onPost(locationID);      
     }
   }
 }

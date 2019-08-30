@@ -9,10 +9,24 @@
                 </div>
             </div>
             <div class="col-6">
-                <div class="nav-toggle">
+                <div class="nav-toggle" (click)="toggleNav()">
                     <i class="fas fa-bars fa-2x"></i>
                 </div>
             </div>
         </div>
     </div>
 </header>
+<div class="sidenav-container" *ngIf="sideNavToggle"[@sideNavContainer]>
+    <div class="row">
+        <div class="col"></div>
+        <div id="sidenav" class="sidenav col-3 align-self-end" [@sideNav]>
+            <a href="javascript:void(0)" class="closebtn" (click)="toggleNav()">&times;</a>
+            <div class="sidenav-items">
+                <a href="https://thefacefoundry.com/" class="nav-item">Main Site</a>
+                <a href="#" class="nav-item">Services</a>
+                <a href="#" class="nav-item">Clients</a>
+                <a href="#" class="nav-item">Contact</a>
+            </div>
+        </div>
+    </div>
+</div>

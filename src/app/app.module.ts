@@ -4,7 +4,9 @@ import {FormsModule} from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { CreditCardDirectivesModule } from 'angular-cc-library'
-import { NgbModule, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ClickOutsideModule } from 'ng-click-outside';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -26,17 +28,19 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { MustMatchDirective } from './validators/must-match.directive';
 import { RouteGuard } from './route.guard';
 
+//canActivate: [RouteGuard]
+
 const appRoutes: Routes = [
   {path: '', component: WelcomeComponent},
-  {path: 'start', component: LogInSignUpComponent, canActivate: [RouteGuard]},
-  {path: 'location', component: LocationComponent, canActivate: [RouteGuard]},
-  {path: 'services', component: ServicesComponent, canActivate: [RouteGuard]},
-  {path: 'staff', component: StaffComponent, canActivate: [RouteGuard]},
-  {path: 'date', component: DateComponent, canActivate: [RouteGuard]},
-  {path: 'time', component: TimeComponent, canActivate: [RouteGuard]},
-  {path: 'review', component: ReviewComponent, canActivate: [RouteGuard]},
-  {path: 'payment', component: PaymentComponent, canActivate: [RouteGuard]},
-  {path: 'thank-you', component: ThankYouComponent, canActivate: [RouteGuard]},
+  {path: 'start', component: LogInSignUpComponent},
+  {path: 'location', component: LocationComponent},
+  {path: 'services', component: ServicesComponent},
+  {path: 'staff', component: StaffComponent},
+  {path: 'date', component: DateComponent},
+  {path: 'time', component: TimeComponent},
+  {path: 'review', component: ReviewComponent},
+  {path: 'payment', component: PaymentComponent},
+  {path: 'thank-you', component: ThankYouComponent},
 ]
 
 @NgModule({
@@ -61,11 +65,13 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     NgbModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
-    CreditCardDirectivesModule
+    CreditCardDirectivesModule,
+    ClickOutsideModule
   ],
   providers: [],
   bootstrap: [AppComponent],

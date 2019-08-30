@@ -29,22 +29,14 @@ export class LogInSignUpComponent {
       this.appService.endpoint = "http://127.0.0.1:5002/login"
       
       jsonData = {
-        "Password": postData.loginPassword,
-        "FirstName": postData.firstName,
-        "LastName": postData.lastName,
-        "CellPhone": postData.signupPhone,
+        "LocationID": 38698,
         "Email": postData.loginEmail,
-        "AllowReceiveEmails": true,
-        "AllowReceivePromotionalEmails": true,
-        "AllowReceiveSMS": true,
-        "RequireCustomerPhone": true,
-        "RequireCustomerAddress": true,
-        "access_token": this.appService.access_token,
-        "LocationID": 38698
+        "Password": postData.loginPassword,
+        "client_id": "3WCCU4EY81os",
+        "client_secret": "ppDcPjF9Ex2G"
       };
 
-      this.appService.onPost(jsonData);
-      console.log(jsonData);
+      this.appService.onPostLogin(jsonData);
       this.loginForm.reset();
 
       this.routeService.canAdvance();
@@ -64,12 +56,11 @@ export class LogInSignUpComponent {
         "AllowReceiveSMS": true,
         "RequireCustomerPhone": true,
         "RequireCustomerAddress": true,
-        "access_token": this.appService.access_token,
+        "access_token": this.appService.access_token_user,
         "LocationID": 38698
       };
 
       this.appService.onPost(jsonData);
-      console.log(jsonData);
       this.signupForm.reset();
       
       this.routeService.canAdvance();

@@ -9,6 +9,8 @@ import { LocationItem } from '../models/location.model';
 })
 export class LocationComponent implements OnInit {
 
+  access_token_user: string;
+
   locationItems: LocationItem[];
 
   currentLocationItem: LocationItem = null;
@@ -17,6 +19,7 @@ export class LocationComponent implements OnInit {
 
   ngOnInit() { 
     this.locationItems = this.appService.locationItems;
+
   }
 
   onSelect(location: LocationItem){
@@ -37,9 +40,17 @@ export class LocationComponent implements OnInit {
       console.log("Please select a location");
     }
     else {
-      console.log(this.currentLocationItem);
       this.appService.reviewItem.location = this.currentLocationItem;
+
+      this.appService.endpoint = "http://127.0.0.1:5002/treatments";
+
+
+      let jsonData: any = {
+        "LocationID": this.appService.reviewItem.location.locationID,
+        "access_token" : this.appService.access_token_user
+      };
+
+      this.appService.onPost(jsonData);
     }
   }
-
 }

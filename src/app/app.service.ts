@@ -11,11 +11,13 @@ import { HttpClient } from '@angular/common/http'
 export class AppService {
 
   endpoint = "http://127.0.0.1:5002/start";
+  user_token: any;
 
-  access_token: string = '';
+  access_token_welcome: string = '';
+  access_token_user: string = '';
 
-  locationItems: LocationItem[] = [new LocationItem("Edina", "3170 Galleria Edina, Minnesota 55435", "../assets/images/location-edina.jpg"),
-    new LocationItem("North Loop", "424 N Washington Ave Minneapolis, MN 55401", "../assets/images/location-north-loop.jpg")];
+  locationItems: LocationItem[] = [new LocationItem("Edina", "3170 Galleria Edina, Minnesota 55435", "../assets/images/location-edina.jpg", 38698),
+    new LocationItem("North Loop", "424 N Washington Ave Minneapolis, MN 55401", "../assets/images/location-north-loop.jpg", 38699)];
 
   serviceItems: ServiceItem[] = [new ServiceItem("Service Name 1", "Filler Description", "../assets/images/location-filler.jpg", 21),
     new ServiceItem("Service Name 2", "Filler Description", "../assets/images/location-filler.jpg", 34),
@@ -39,4 +41,13 @@ export class AppService {
         console.log(responseData);
       });
   }
+  onPostLogin(postData: {}){
+    this.http.post(this.endpoint, postData)
+      .subscribe(responseData => {
+        console.log(responseData);
+        this.user_token = responseData;
+        this.access_token_user = this.user_token.access_token;
+      });
+  }
+
 }

@@ -31,7 +31,7 @@ export class WelcomeComponent implements OnInit {
     .subscribe(responseData => {
       this.token = responseData;
       this.tokenString = this.token.access_token;
-      this.appService.access_token = this.tokenString;
+      this.appService.access_token_welcome = this.tokenString;
       console.log(this.tokenString);
     });
   }
