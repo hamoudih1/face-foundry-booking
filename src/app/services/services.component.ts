@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ServiceItem } from '../models/service.model';
 import { AppService } from '../app.service';
 
@@ -7,8 +7,9 @@ import { AppService } from '../app.service';
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.css']
 })
-export class ServicesComponent implements OnInit {
+export class ServicesComponent implements OnInit, AfterViewInit {
 
+  treatmenst_array: any[];
   serviceItems: ServiceItem[];
   currentServiceItems: ServiceItem[] = [];
 
@@ -16,6 +17,10 @@ export class ServicesComponent implements OnInit {
 
   ngOnInit() {
     this.serviceItems = this.appService.serviceItems;
+    console.log(this.serviceItems);
+  }
+  ngAfterViewInit() {
+   
   }
 
   onSelect(serviceItem: ServiceItem) {
@@ -57,5 +62,10 @@ export class ServicesComponent implements OnInit {
       // locationID = this.appService.reviewItem.location.locationID;
       this.appService.onPost(locationID);      
     }
+  }
+
+  test() {
+    this.serviceItems = this.appService.serviceItems;
+    console.log(this.serviceItems);
   }
 }

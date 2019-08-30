@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AppService } from '../app.service';
 import { LocationItem } from '../models/location.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-location',
@@ -15,7 +16,7 @@ export class LocationComponent implements OnInit {
 
   currentLocationItem: LocationItem = null;
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, private router: Router) { }
 
   ngOnInit() { 
     this.locationItems = this.appService.locationItems;
@@ -44,13 +45,12 @@ export class LocationComponent implements OnInit {
 
       this.appService.endpoint = "http://127.0.0.1:5002/treatments";
 
-
       let jsonData: any = {
         "LocationID": this.appService.reviewItem.location.locationID,
         "access_token" : this.appService.access_token_user
       };
 
-      this.appService.onPost(jsonData);
+      this.appService.onPostLocation(jsonData);
     }
   }
 }

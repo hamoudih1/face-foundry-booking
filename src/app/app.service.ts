@@ -4,24 +4,31 @@ import { ServiceItem } from './models/service.model';
 import { StaffItem } from './models/staff.model';
 import { ReviewItem } from './models/review.model';
 import { HttpClient } from '@angular/common/http'
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
+
   endpoint = "http://127.0.0.1:5002/start";
   user_token: any;
 
+  //access tokens
   access_token_welcome: string = '';
   access_token_user: string = '';
 
+  //Treatments data based on location
+  treatments_json: any;
+  treatments_array: any[] = [];
+
+  //locations
   locationItems: LocationItem[] = [new LocationItem("Edina", "3170 Galleria Edina, Minnesota 55435", "../assets/images/location-edina.jpg", 38698),
     new LocationItem("North Loop", "424 N Washington Ave Minneapolis, MN 55401", "../assets/images/location-north-loop.jpg", 38699)];
 
-  serviceItems: ServiceItem[] = [new ServiceItem("Service Name 1", "Filler Description", "../assets/images/location-filler.jpg", 21),
-    new ServiceItem("Service Name 2", "Filler Description", "../assets/images/location-filler.jpg", 34),
-    new ServiceItem("Service Name 3", "Filler Description", "../assets/images/location-filler.jpg", 27)];
+  //services
+  serviceItems: ServiceItem[] = [];
 
   staffNames: string[] = ["Name 1", "Name 2", "Name 3"];
 
@@ -29,12 +36,34 @@ export class AppService {
 
   reviewItem: ReviewItem = new ReviewItem(null, [], null, null, null);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
+  // retrieving the services 
+  getServices(treatments: any[]){
+    let serviceItem: ServiceItem = new ServiceItem(null, null, null, null, null);
+    let serviceItems: ServiceItem[] = [];
+    
+    for(let item of treatments){
+      
+      serviceItem.name = item["Name"];
+      serviceItem.description = item["Description"];
+      serviceItem.price = item["Price"]["Amount"];
+      serviceItem.treatmentID = item["ID"];
+      serviceItem.duration = item["TreatmentDuration"];
+
+      serviceItems.push(serviceItem);
+      serviceItem = new ServiceItem(null, null, null, null, null);
+    }
+    console.log(serviceItems);
+    
+
+    this.serviceItems = serviceItems;
+  }
+
+  // Communications with server
   getConfig() {
     return this.http.get(this.endpoint);
   }
-
   onPost(postData: {}){
     this.http.post(this.endpoint, postData)
       .subscribe(responseData => {
@@ -47,6 +76,16 @@ export class AppService {
         console.log(responseData);
         this.user_token = responseData;
         this.access_token_user = this.user_token.access_token;
+      });
+  }
+  onPostLocation(postData: {}){
+    this.http.post(this.endpoint, postData)
+      .subscribe(responseData => {
+        console.log(responseData);
+        this.treatments_json = responseData;
+        this.treatments_array = this.treatments_json["Treatments"];
+        this.getServices(this.treatments_array);  
+        this.router.navigate(['/services']);
       });
   }
 
