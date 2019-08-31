@@ -17,7 +17,6 @@ export class ServicesComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.serviceItems = this.appService.serviceItems;
-    console.log(this.serviceItems);
   }
   ngAfterViewInit() {
    
@@ -54,18 +53,16 @@ export class ServicesComponent implements OnInit, AfterViewInit {
       console.log("please select a service");
     }
     else {
-      let locationID: number;
-      console.log(this.currentServiceItems);
       this.appService.reviewItem.service = this.currentServiceItems;
 
-      this.appService.endpoint = "http://127.0.0.1:5002/treatments"
-      // locationID = this.appService.reviewItem.location.locationID;
-      this.appService.onPost(locationID);      
-    }
-  }
+      this.appService.endpoint = "http://127.0.0.1:5002/employees"
 
-  test() {
-    this.serviceItems = this.appService.serviceItems;
-    console.log(this.serviceItems);
+      let locationID = this.appService.reviewItem.location.locationID;
+      let jsonData: any = {
+        "LocationID": locationID,
+        "access_token" : this.appService.access_token_user
+      };
+      this.appService.onPostServices(jsonData);      
+    }
   }
 }

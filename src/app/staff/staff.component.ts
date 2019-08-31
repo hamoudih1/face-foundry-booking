@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { StaffItem } from '../models/staff.model';
 import { AppService } from '../app.service';
+import { PeopleItem } from '../models/people.model';
 
 @Component({
   selector: 'app-staff',
@@ -11,20 +12,22 @@ export class StaffComponent implements OnInit {
 
   @ViewChild('selectStaff', {static: true}) selectStaff : ElementRef;
 
-  staffNames: string[];
+  staffItems: StaffItem[];
 
   showMessage: boolean = false;
 
-  currentStaffItem: StaffItem = new StaffItem(null, null, false);
+  currentPeopleItem: PeopleItem = new PeopleItem(null, null, null, null, null, false);
 
   constructor(private appService: AppService) { }
 
   ngOnInit() {
-    this.staffNames = this.appService.staffNames;
+    this.staffItems = this.appService.staffItems;
+    console.log(this.staffItems);
+    
   }
   onSelectPeople(event: any) {
-    this.currentStaffItem.people = event.target.value;
-    if (this.currentStaffItem.people == "Group") {
+    this.currentPeopleItem.people = event.target.value;
+    if (this.currentPeopleItem.people == "Group") {
       this.showMessage = true;
     }
     else {
@@ -32,22 +35,29 @@ export class StaffComponent implements OnInit {
     }
   }
   onSelectStaff(event: any) {
-    this.currentStaffItem.staffName = event.target.value;
-    this.currentStaffItem.firstAvaiable = false;
+
+    let json = JSON.parse(event.target.value);
+    this.currentPeopleItem.staffFirstName = json['staffFirstName'];
+    this.currentPeopleItem.staffLastName = json["staffLastName"];
+    this.currentPeopleItem.staffGender = json["staffGender"];
+    this.currentPeopleItem.staffID = json["staffID"];
+    this.currentPeopleItem.firstAvaiable = false;
+        
   }
   onSelectAvailable() {
-    this.currentStaffItem.staffName = null;
-    this.currentStaffItem.firstAvaiable = true;
+    this.currentPeopleItem.staffFirstName = null;
+    this.currentPeopleItem.staffLastName = null;
+    this.currentPeopleItem.firstAvaiable = true;
     this.selectStaff.nativeElement.value = "";
   }
 
   nextEnabled() {
-    if(this.currentStaffItem == null) {
+    if(this.currentPeopleItem == null) {
       return false;
     }
-    else if(this.currentStaffItem.people == null || this.currentStaffItem.people == "" ||
-      ((this.currentStaffItem.staffName == null || this.currentStaffItem.staffName == "") && 
-      this.currentStaffItem.firstAvaiable == false)) {
+    else if(this.currentPeopleItem.people == null || this.currentPeopleItem.people == "" ||
+      ((this.currentPeopleItem.staffFirstName == null || this.currentPeopleItem.staffFirstName == "") && 
+      this.currentPeopleItem.firstAvaiable == false)) {
       return false
     }
     else {
@@ -55,7 +65,7 @@ export class StaffComponent implements OnInit {
     }
   }
   onSubmit() {
-    console.log(this.currentStaffItem);
-    this.appService.reviewItem.staff = this.currentStaffItem;
+    console.log(this.currentPeopleItem);
+    this.appService.reviewItem.staff = this.currentPeopleItem;
   }
 }

@@ -23,42 +23,26 @@ export class AppService {
   treatments_json: any;
   treatments_array: any[] = [];
 
+  //employees data based on location
+  staff_json: any;
+  staff_array: any[] = [];
+
+  //Saved data
   //locations
   locationItems: LocationItem[] = [new LocationItem("Edina", "3170 Galleria Edina, Minnesota 55435", "../assets/images/location-edina.jpg", 38698),
     new LocationItem("North Loop", "424 N Washington Ave Minneapolis, MN 55401", "../assets/images/location-north-loop.jpg", 38699)];
 
-  //services
+  //list of services
   serviceItems: ServiceItem[] = [];
 
-  staffNames: string[] = ["Name 1", "Name 2", "Name 3"];
+  // list of staff
+  staffItems: StaffItem[] = [];
 
   timeItems: string[] = ['3:00', '3:15', '3:30', '3:45', '4:00', '4:15', '4:30', '4:45', '5:00', '5:15', '5:30', '5:45', '6:00', '6:15', '6:30', '6:45', '7:00'];
 
   reviewItem: ReviewItem = new ReviewItem(null, [], null, null, null);
 
   constructor(private http: HttpClient, private router: Router) { }
-
-  // retrieving the services 
-  getServices(treatments: any[]){
-    let serviceItem: ServiceItem = new ServiceItem(null, null, null, null, null);
-    let serviceItems: ServiceItem[] = [];
-    
-    for(let item of treatments){
-      
-      serviceItem.name = item["Name"];
-      serviceItem.description = item["Description"];
-      serviceItem.price = item["Price"]["Amount"];
-      serviceItem.treatmentID = item["ID"];
-      serviceItem.duration = item["TreatmentDuration"];
-
-      serviceItems.push(serviceItem);
-      serviceItem = new ServiceItem(null, null, null, null, null);
-    }
-    console.log(serviceItems);
-    
-
-    this.serviceItems = serviceItems;
-  }
 
   // Communications with server
   getConfig() {
@@ -88,5 +72,51 @@ export class AppService {
         this.router.navigate(['/services']);
       });
   }
+  onPostServices(postData: {}){
+    this.http.post(this.endpoint, postData)
+      .subscribe(responseData => {
+        console.log(responseData);
+        this.staff_json = responseData;
+        this.staff_array = this.staff_json["Results"];
+        this.getEmployees(this.staff_array);
+        this.router.navigate(['/staff']);
+      });
+  }
 
+  // retrieving the services 
+  getServices(treatments: any[]){
+    let serviceItem: ServiceItem = new ServiceItem(null, null, null, null, null);
+    let serviceItems: ServiceItem[] = [];
+    
+    for(let item of treatments){
+      
+      serviceItem.name = item["Name"];
+      serviceItem.description = item["Description"];
+      serviceItem.price = item["Price"]["Amount"];
+      serviceItem.treatmentID = item["ID"];
+      serviceItem.duration = item["TreatmentDuration"];
+
+      serviceItems.push(serviceItem);
+      serviceItem = new ServiceItem(null, null, null, null, null);
+    }
+    this.serviceItems = serviceItems;
+  }
+
+  // retrieving the staff
+  getEmployees(employees: any[]){
+    let staffItem: StaffItem = new StaffItem(null, null, null, null);
+    let staffItems: StaffItem[] = [];
+    
+    for(let item of employees){
+      
+      staffItem.staffFirstName = item["FirstName"];
+      staffItem.staffLastName = item["LastName"];
+      staffItem.staffGender = item["Gender"]["Name"];
+      staffItem.staffID = item["ID"]
+      
+      staffItems.push(staffItem);
+      staffItem = new StaffItem(null, null, null, null);
+    }
+    this.staffItems = staffItems;
+  }
 }

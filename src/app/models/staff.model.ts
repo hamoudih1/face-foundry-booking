@@ -1,11 +1,13 @@
 export class StaffItem {
-    staffName: string;
-    people: string;
-    firstAvaiable: boolean;
+    staffFirstName: string;
+    staffLastName: string;
+    staffGender: string;
+    staffID: number;
 
-    constructor(staffName: string, people: string, firstAvailable: boolean) {
-        this.staffName = staffName;
-        this.people = people;
-        this.firstAvaiable = firstAvailable;
+    constructor(staffFirstName: string, staffLastName: string, staffGender: string,  staffID: number) {
+        this.staffFirstName = staffFirstName;
+        this.staffLastName = staffLastName;
+        this.staffGender = staffGender;
+        this.staffID = staffID;
     }
 }

@@ -38,9 +38,9 @@
                         <div class="staff-select">
                             <select name="selectStaff" id="#selectStaff" (change)="onSelectStaff($event)" #selectStaff>
                                 <option value="">Select</option>
-                                <option *ngFor="let item of staffNames" 
-                                        value="{{item}}"
-                                >{{item}}</option>
+                                <option *ngFor="let item of staffItems" 
+                                        value='{"staffFirstName": "{{item.staffFirstName}}", "staffLastName": "{{item.staffLastName}}", "staffGender": "{{item.staffGender}}", "staffID": "{{item.staffID}}"}'
+                                >{{item.staffFirstName}} {{item.staffLastName}}</option>
                             </select>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                     <div class="col-5">
                         <div class="random">
                             <a (click)="onSelectAvailable()"
-                            [ngClass]="{'active': currentStaffItem.firstAvaiable}">First Available</a>
+                            [ngClass]="{'active': currentPeopleItem.firstAvaiable}">First Available</a>
                         </div>
                     </div>
                 </div>

@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="section-header">
-                            <h2 (click)="test()">Choose your Services</h2>
+                            <h2>Choose your Services</h2>
                         </div>
                     </div>
                 </div>
@@ -23,8 +23,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="next-button">
-                            <button class="btn btn-primary btn-lg" (click)="onSubmit()" 
-                            routerLink="/staff" [disabled]="currentServiceItems == []">Next</button>
+                            <button class="btn btn-primary btn-lg" (click)="onSubmit()" [disabled]="currentServiceItems == []">Next</button>
                         </div>
                     </div>
                 </div>
