@@ -3,7 +3,7 @@ import { LocationItem } from './models/location.model';
 import { ServiceItem } from './models/service.model';
 import { StaffItem } from './models/staff.model';
 import { ReviewItem } from './models/review.model';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -26,6 +26,10 @@ export class AppService {
   //employees data based on location
   staff_json: any;
   staff_array: any[] = [];
+
+  //dates based on employee
+  dates_json: any;
+  dates_array: any[] = [];
 
   //Saved data
   //locations
@@ -80,6 +84,16 @@ export class AppService {
         this.staff_array = this.staff_json["Results"];
         this.getEmployees(this.staff_array);
         this.router.navigate(['/staff']);
+      });
+  }
+
+  onPostStaff(postData: {}){
+    this.http.post(this.endpoint, postData)
+      .subscribe(responseData => {
+        console.log(responseData);
+        this.dates_json = responseData;
+        this.dates_array = this.dates_json['0']['serviceCategories']['0']['services']['0']['availability'];
+        this.router.navigate(['/date']);
       });
   }
 

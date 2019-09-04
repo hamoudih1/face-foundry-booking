@@ -50,7 +50,7 @@ export class ReviewComponent implements OnInit {
       this.reviewLocation = this.reviewItem.location.name;
       this.reviewServices = this.extractServices(this.reviewItem.service);
       this.reviewPeople = this.reviewItem.staff.people;
-      this.reviewStaff = this.reviewItem.staff.staffName;
+      this.reviewStaff = this.reviewItem.staff.staffFirstName + " " + this.reviewItem.staff.staffLastName;
       this.reviewDate = this.reviewItem.date;
       this.reviewTime = this.reviewItem.time;
 
