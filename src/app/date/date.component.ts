@@ -15,7 +15,7 @@ export class DateComponent implements OnInit {
   firstDate: NgbDate = new NgbDate(0, 0, 0);
   lastDate: NgbDate = new NgbDate(0, 0, 0);
 
-  constructor(private appService: AppService, private config) { }
+  constructor(private appService: AppService) { }
 
   ngOnInit() {
     this.dates_array = this.appService.dates_array;
