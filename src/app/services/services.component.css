@@ -2,16 +2,40 @@
     text-align: center;
 }
 .membership-info {
+    width: 100%;
     height: 100%;
     display: flex;
     flex-flow: column;
     justify-content: center;
+    text-align: center;
+}
+.membership-info a {
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: 100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .membership-info .btn {
     width: 200px;
     margin: auto;
-    margin-bottom: 100px;
 }
 .next-button {
     margin-top: 0;
+    margin-bottom: 30px;
+}
+.service-add-on-container {
+    margin-top: 100px;
+    border: 1px black solid;
+    min-height: 250px;
+}
+.service-add-on-container .wrap {
+    padding: 15px 10px 15px 10px;
+}
+.service-add-on-container .content {
+    text-align: left;
+    padding-left: 70px;
+}
+.add-on {
+    padding: 5px;
 }

@@ -67,20 +67,22 @@ export class StaffComponent implements OnInit {
     }
   }
   onSubmit() {
+    // this.appService.reviewItem.staff = this.currentPeopleItem;
+
+    // this.appService.endpoint = "http://127.0.0.1:5002/availabledates"
+
+    // let locationID = this.appService.reviewItem.location.locationID;
+    // let jsonData = {
+    //     'locationIds': [locationID],
+    //     'fromDate': '2019-08-28T09:00:00',
+    //     'toDate': '2019-09-20T00:00:00',
+    //     'serviceId': 2373272,
+    //     'employeeId': 639478,
+    //     'Authorization': "Bearer" + " " + this.appService.access_token_welcome
+    // };
+    // this.appService.onPostStaff(jsonData);
     this.appService.reviewItem.staff = this.currentPeopleItem;
-
-    this.appService.endpoint = "http://127.0.0.1:5002/availabledates"
-
-    let locationID = this.appService.reviewItem.location.locationID;
-    let jsonData = {
-        'locationIds': [locationID],
-        'fromDate': '2019-08-28T09:00:00',
-        'toDate': '2019-09-20T00:00:00',
-        'serviceId': 2373272,
-        'employeeId': 639478,
-        'Authorization': "Bearer" + " " + this.appService.access_token_welcome
-    };
-    this.appService.onPostStaff(jsonData);
+    this.router.navigate(['/date']); 
     //this.onPost();
   }
 

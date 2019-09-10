@@ -19,13 +19,13 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <ngb-datepicker #dp [(ngModel)]="model" minDate="firstDate" maxDate="lastDate" (navigate)="date = $event.next"></ngb-datepicker>
+                        <ngb-datepicker #dp [(ngModel)]="model" minDate="firstDate" maxDate="lastDate" (navigate)="model = $event.next"></ngb-datepicker>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="next-button">
-                            <button class="btn btn-primary btn-lg" (click)="onSubmit()" routerLink="/time" [disabled]="currentDate == null">Next</button>
+                            <button class="btn btn-primary btn-lg" (click)="onSubmit()" [disabled]="model == null">Next</button>
                         </div>
                     </div>
                 </div>

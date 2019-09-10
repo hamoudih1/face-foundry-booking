@@ -50,7 +50,9 @@ export class LocationComponent implements OnInit {
         "access_token" : this.appService.access_token_user
       };
 
-      this.appService.onPostLocation(jsonData);
+      this.appService.reviewItem.location = this.currentLocationItem;
+      this.router.navigate(['/services']); 
+      //this.appService.onPostLocation(jsonData);
     }
   }
 }

@@ -5,6 +5,7 @@ import { StaffItem } from './models/staff.model';
 import { ReviewItem } from './models/review.model';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { Router } from '@angular/router';
+import { AddOn } from './models/add-on.model';
 
 @Injectable({
   providedIn: 'root'
@@ -37,14 +38,16 @@ export class AppService {
     new LocationItem("North Loop", "424 N Washington Ave Minneapolis, MN 55401", "../assets/images/location-north-loop.jpg", 38699)];
 
   //list of services
-  serviceItems: ServiceItem[] = [];
+  serviceItems: ServiceItem[] = [new ServiceItem("Manicure", "Service Description", 10, 11111, 30, [new AddOn("Nails", false), new AddOn("Polish", false), new AddOn("Painting", false)]),
+    new ServiceItem("Hair", "Service Description", 12, 11112, 50, [new AddOn("Style", false), new AddOn("Cut", false), new AddOn("Dye", false)]),
+    new ServiceItem("Pedicure", "Service Description", 14, 11113, 70, [new AddOn("Pedi 1", false), new AddOn("Pedi 2", false), new AddOn("Pedi 3", false)])];
 
   // list of staff
-  staffItems: StaffItem[] = [];
+  staffItems: StaffItem[] = [new StaffItem("Bill", "Jones", "Male", 11111), new StaffItem("Jessica", "Smith", "Female", 11112), new StaffItem("Dana", "Hill", "Female", 11113)];
 
   timeItems: string[] = ['3:00', '3:15', '3:30', '3:45', '4:00', '4:15', '4:30', '4:45', '5:00', '5:15', '5:30', '5:45', '6:00', '6:15', '6:30', '6:45', '7:00'];
 
-  reviewItem: ReviewItem = new ReviewItem(null, [], null, null, null);
+  reviewItem: ReviewItem = new ReviewItem(null, [], [], null, null, null);
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -99,7 +102,7 @@ export class AppService {
 
   // retrieving the services 
   getServices(treatments: any[]){
-    let serviceItem: ServiceItem = new ServiceItem(null, null, null, null, null);
+    let serviceItem: ServiceItem = new ServiceItem(null, null, null, null, null, []);
     let serviceItems: ServiceItem[] = [];
     
     for(let item of treatments){
@@ -111,7 +114,7 @@ export class AppService {
       serviceItem.duration = item["TreatmentDuration"];
 
       serviceItems.push(serviceItem);
-      serviceItem = new ServiceItem(null, null, null, null, null);
+      serviceItem = new ServiceItem(null, null, null, null, null, []);
     }
     this.serviceItems = serviceItems;
   }

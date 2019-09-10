@@ -15,6 +15,7 @@ export class ReviewComponent implements OnInit {
 
   reviewLocation: string;
   reviewServices: string;
+  reviewServiceAddOns: string;
   reviewPeople: string;
   reviewStaff: string;
   reviewDate: NgbDate;
@@ -33,12 +34,14 @@ export class ReviewComponent implements OnInit {
     if(this.reviewItem == null ||
       this.reviewItem.location == null ||
       this.reviewItem.service == [] ||
+      this.reviewItem.serviceAddOns == [] ||
       this.reviewItem.staff == null ||
       this.reviewItem.date == null ||
       this.reviewItem.time == null) {
 
       this.reviewLocation = null;
       this.reviewServices = null;
+      this.reviewServiceAddOns = null;
       this.reviewPeople = null;
       this.reviewStaff = null
       this.reviewTime = null;
@@ -49,6 +52,7 @@ export class ReviewComponent implements OnInit {
     else {
       this.reviewLocation = this.reviewItem.location.name;
       this.reviewServices = this.extractServices(this.reviewItem.service);
+      this.reviewServiceAddOns = this.extractServiceAddOns(this.reviewItem.serviceAddOns);
       this.reviewPeople = this.reviewItem.staff.people;
       this.reviewStaff = this.reviewItem.staff.staffFirstName + " " + this.reviewItem.staff.staffLastName;
       this.reviewDate = this.reviewItem.date;
@@ -77,5 +81,21 @@ export class ReviewComponent implements OnInit {
     }
 
     return serviceString;
+  }
+
+  extractServiceAddOns(addOns: string[]) {
+
+    let addOnString: string = "";
+
+    for(let item of addOns) {
+      if(addOnString == "") {
+        addOnString = addOnString + item;
+      }
+      else {
+        addOnString = addOnString + ", " + item;
+      }
+    }
+
+    return addOnString;
   }
 }

@@ -4,7 +4,7 @@
             <div class="col-3">
                 <app-navigation></app-navigation>
             </div>
-            <div class="col-9 main">
+            <div class="col-6 main">
                 <div class="row">
                     <div class="col-12">
                         <div class="section-header">
@@ -20,12 +20,30 @@
                             [active]="isActive(item)"></app-service-item>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="next-button">
-                            <button class="btn btn-primary btn-lg" (click)="onSubmit()" [disabled]="currentServiceItems == []">Next</button>
+            </div>
+            <div class="col-3 main">
+                <div class="service-add-on-container">
+                    <div class="wrap">
+                        <div class="section-header">
+                            <h3>Service Add Ons</h3>
+                        </div>
+                        <div class="content">
+                            <ng-container *ngFor="let service of currentServiceItems">
+                                <div class="custom-control custom-checkbox add-on" *ngFor="let item of service.addOns">
+                                    <input type="checkbox" class="custom-control-input" id="{{item.addOn}}" [checked]="item.checked" (change)="selectAddOn(item)">
+                                    <label class="custom-control-label" for="{{item.addOn}}">{{item.addOn}}</label>
+                                </div>
+                            </ng-container>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-9">
+                <div class="next-button">
+                    <button class="btn btn-primary btn-lg" (click)="onSubmit()" [disabled]="currentServiceItems == []">Next</button>
                 </div>
             </div>
         </div>
@@ -41,3 +59,4 @@
         </div>
     </div>
 </section>
+

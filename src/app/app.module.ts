@@ -24,9 +24,11 @@ import { TimeItemComponent } from './time/time-item/time-item.component';
 import { LocationItemComponent } from './location/location-item/location-item.component';
 import { ServiceItemComponent } from './services/service-item/service-item.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { ServiceAddOnComponent } from './services/service-add-on/service-add-on.component'
 
 import { MustMatchDirective } from './validators/must-match.directive';
 import { RouteGuard } from './route.guard';
+
 
 //canActivate: [RouteGuard]
 
@@ -62,6 +64,7 @@ const appRoutes: Routes = [
     ServiceItemComponent,
     WelcomeComponent,
     MustMatchDirective,
+    ServiceAddOnComponent
   ],
   imports: [
     BrowserModule,

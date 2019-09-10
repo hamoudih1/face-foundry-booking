@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AppService } from '../app.service';
 import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-date',
@@ -14,8 +15,9 @@ export class DateComponent implements OnInit {
   dates_list: NgbDate[] = [];
   firstDate: NgbDate = new NgbDate(0, 0, 0);
   lastDate: NgbDate = new NgbDate(0, 0, 0);
+  
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, private router: Router) { }
 
   ngOnInit() {
     this.dates_array = this.appService.dates_array;
@@ -51,12 +53,14 @@ export class DateComponent implements OnInit {
 
 
   onSubmit() {
-    if(this.model == new NgbDate(0, 0, 0)) {
-      console.log("please pick a date");
-    }
-    else {
-      this.appService.reviewItem.date = this.model;
-      console.log(this.model);
-    }
+    // if(this.model == new NgbDate(0, 0, 0)) {
+    //   console.log("please pick a date");
+    // }
+    // else {
+    //   this.appService.reviewItem.date = this.model;
+    //   console.log(this.model);
+    // }
+    this.appService.reviewItem.date = this.model;
+    this.router.navigate(['/time']); 
   }
 }
