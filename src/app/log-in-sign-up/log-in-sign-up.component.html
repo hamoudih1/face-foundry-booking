@@ -1,12 +1,12 @@
 <section class="log-in-sign-up-section">
     <div class="container">
         <div class="row">
-            <div class="col-3">
+            <div class="col-md-3 ">
                 <app-navigation></app-navigation>
             </div>
-            <div class="col-9 main">
+            <div class="col-md-9 main">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6" [ngClass]="{'desktop' : signupMobile}">
                         <div class="login">
                             <div class="section-header">
                                 <h2>Log In</h2>
@@ -33,19 +33,25 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-button">
-                                            <button type="submit" class="btn btn-primary btn-lg" [disabled]="!loginForm.valid">Submit</button>
+                                            <button type="submit" class="btn btn-primary btn-lg" [disabled]="!loginForm.valid" (click)="onSubmitLogin(loginForm.value)">Submit</button>
                                         </div>
+                                        <div class="col-12">
+                                            <span class="help-block" *ngIf="logFail">Failed to log in. Please try again.</span>
+                                        </div> 
+                                        <div class="col-12">
+                                            <a class="signup-block mobile" (click)="displaySignUpMobile()">Create an account</a>
+                                        </div>                               
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 desktop" [ngClass]="{'mobile' : signupMobile}">
                         <div class="sign-up">
                             <div class="section-header">
                                 <h2>Sign Up</h2>
                             </div>
-                            <form (ngSubmit)="onSubmit(signupForm.value, 'signup')" #signupForm="ngForm" class="signup-form" [mustMatch]="['signupPassword', 'signupConfirmPassword']">
+                            <form (ngSubmit)="onSubmit(signupForm.value, 'signup')" #signupForm="ngForm" class="signup-form" [phone]="['signupPhone']" [mustMatch]="['signupPassword', 'signupConfirmPassword']">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
@@ -73,8 +79,8 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="signupPhone">Phone:</label>
-                                            <input type="tel" name="signupPhone" id="signupPhone" class="form-control" required ngModel #signupPhone="ngModel">
-                                            <span class="help-block" *ngIf="!signupPhone.valid && signupPhone.touched">Please enter a phone number</span>
+                                            <input type="tel" name="signupPhone" id="signupPhone" class="form-control" required ngModel #signupPhone="ngModel" pattern="[0-9]*">
+                                            <span class="help-block" *ngIf="!signupPhone.valid && signupPhone.touched">Please enter a phone number in this format: xxxxxxxxxx</span>
                                         </div>
                                     </div>
                                 </div>
@@ -99,8 +105,14 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-button">
-                                            <button type="submit" class="btn btn-primary btn-lg" [disabled]="!signupForm.valid" >Submit</button>
+                                            <button type="submit" class="btn btn-primary btn-lg" [disabled]="!signupForm.valid" (click)="onSubmitCreate(signupForm.value)" >Submit</button>
                                         </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <span class="success-block" *ngIf="submit">Your account has been created. Please log in.</span>
+                                    </div>
+                                    <div class="col-12">
+                                        <a class="login-block mobile" (click)="displayLoginMobile()">Back to login</a>
                                     </div>
                                 </div>
                             </form>

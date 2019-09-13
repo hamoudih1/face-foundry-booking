@@ -1,3 +1,37 @@
 .log-in-sign-up-section {
     text-align: center;
 }
+.btn {
+    margin-top : 20px;
+    margin-bottom : 20px;
+}
+.success-block {
+    color: green;
+}
+.mobile {
+    display: none;
+}
+.signup-block {
+    cursor: pointer;
+}
+.login-block {
+    cursor: pointer;
+}
+.desktop {
+    display: block;
+}
+
+@media(max-width: 767px) {
+    .mobile {
+        display: block;
+    }
+    .desktop {
+        display: none;
+    }
+    .mobile.desktop {
+        display: block;
+    }
+    .login {
+        margin-bottom: 30px;
+    }
+}

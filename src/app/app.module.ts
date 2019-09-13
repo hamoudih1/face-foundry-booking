@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { CreditCardDirectivesModule } from 'angular-cc-library'
@@ -28,6 +28,7 @@ import { ServiceAddOnComponent } from './services/service-add-on/service-add-on.
 
 import { MustMatchDirective } from './validators/must-match.directive';
 import { RouteGuard } from './route.guard';
+import { PhoneDirective } from './validators/phone.directive';
 
 
 //canActivate: [RouteGuard]
@@ -64,7 +65,8 @@ const appRoutes: Routes = [
     ServiceItemComponent,
     WelcomeComponent,
     MustMatchDirective,
-    ServiceAddOnComponent
+    ServiceAddOnComponent,
+    PhoneDirective
   ],
   imports: [
     BrowserModule,
