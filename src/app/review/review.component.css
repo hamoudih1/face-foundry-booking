@@ -26,3 +26,9 @@
 .next-button {
     margin-top: 0;
 }
+
+@media(max-width: 580px) {
+    .review-container {
+        width: auto;
+    }
+}

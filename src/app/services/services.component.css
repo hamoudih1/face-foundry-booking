@@ -39,3 +39,9 @@
 .add-on {
     padding: 5px;
 }
+
+@media(max-width: 991px) {
+    .service-add-on-container {
+        margin-top: 0;
+    }
+}

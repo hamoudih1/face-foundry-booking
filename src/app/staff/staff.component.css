@@ -2,7 +2,7 @@
     text-align: center;
 }
 .people-select {
-    width: 280px;
+    width: 180px;
     margin: auto;
     margin-bottom: 70px;
 }
@@ -51,4 +51,12 @@
 .random a:hover{
     transform: scale(1.1);
     transition-duration: .3s;
+}
+@media(max-width: 767px) {
+    .people-select {
+        width: auto;
+    }
+    .random {
+        width: 100px;
+    }
 }
