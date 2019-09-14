@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/app/app.service';
+import { Router } from '@angular/router';
+import { ServiceItem } from 'src/app/models/service.model';
 
 @Component({
   selector: 'app-service-add-on',
@@ -7,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServiceAddOnComponent implements OnInit {
 
-  constructor() { }
+  constructor(private appService: AppService, private router: Router) { }
 
   ngOnInit() {
   }

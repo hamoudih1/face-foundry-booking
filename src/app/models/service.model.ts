@@ -6,9 +6,10 @@ export class ServiceItem {
     price: number;
     treatmentID: number;
     duration: number;
-    addOns: AddOn [];
+    addOns = new Array<AddOn>();
 
-    constructor(name: string, description: string, price: number, treatmentID: number, duration: number, addOns: AddOn[]){
+    constructor(name: string, description: string, price: number, treatmentID: number, duration: number,
+                addOns: AddOn[]) {
         this.name = name;
         this.description = description;
         this.price = price;

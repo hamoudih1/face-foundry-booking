@@ -16,10 +16,14 @@ export class LocationComponent implements OnInit {
 
   currentLocationItem: LocationItem = null;
 
+  // location info
+  locationData: any;
+
+
   constructor(private appService: AppService, private router: Router) { }
 
   ngOnInit() { 
-    this.locationItems = this.appService.locationItems;
+    this.get_location();
 
   }
 
@@ -45,14 +49,28 @@ export class LocationComponent implements OnInit {
 
       this.appService.endpoint = "http://127.0.0.1:5002/treatments";
 
-      let jsonData: any = {
-        "LocationID": this.appService.reviewItem.location.locationID,
-        "access_token" : this.appService.access_token_user
-      };
-
-      this.appService.reviewItem.location = this.currentLocationItem;
-      this.router.navigate(['/services']); 
+      // this.appService.reviewItem.location = this.currentLocationItem;
+      this.router.navigate(['/services']);
       //this.appService.onPostLocation(jsonData);
     }
+  }
+
+  get_location() {
+    this.appService.endpoint = "http://127.0.0.1:5002/location";
+    this.appService.postlocation().subscribe(responseData => {
+      console.log(responseData);
+      this.locationData = responseData;
+      if (this.locationData.IsSuccess) {
+        this.appService.locationItems.push(
+          new LocationItem(this.locationData.AccountName,
+            this.locationData.Address.Street1,
+            this.locationData.LogoUrl,
+            this.locationData.ID));
+      } else {
+        // TODO: get location unsuccessful add popup windows
+      }
+    },
+      error => { console.log(error); },
+      () => { this.locationItems = this.appService.locationItems; });
   }
 }

@@ -11,16 +11,28 @@ import { AddOn } from '../models/add-on.model';
 })
 export class ServicesComponent implements OnInit{
 
-  treatmenst_array: any[];
+  treatmenst_array = new Array<any>();
+  temp_treatment: any;
+  temp_addon: any;
+  temp_addon_array: AddOn[] = new Array<AddOn>();
   serviceItems: ServiceItem[];
   currentServiceItems: ServiceItem[] = [];
 
   serviceAddOns: string [] = [];
 
+  // serviceInfo
+  serviceInfo: any;
+  treatmentItems: any;
+
+  // addOnsInfo
+  addonInfo: any;
+  addonItems: any;
+
   constructor(private appService: AppService, private router: Router) { }
 
   ngOnInit() {
-    this.serviceItems = this.appService.serviceItems;
+    this.get_service();
+    // this.serviceItems = this.appService.serviceItems;
   }
 
   onSelect(serviceItem: ServiceItem) {
@@ -41,6 +53,7 @@ export class ServicesComponent implements OnInit{
       }
     }
     else {
+      // request to get current service addOn
       this.currentServiceItems.push(serviceItem);
     }
   }
@@ -104,4 +117,55 @@ export class ServicesComponent implements OnInit{
       
     }
   }
-}
+
+  get_service() {
+    const jsonData: any = {
+      "LocationID": this.appService.reviewItem.location.locationID,
+      "access_token": this.appService.access_token_user
+    };
+    this.appService.onPostServices(jsonData).subscribe(reponseData => {
+      console.log(reponseData);
+      this.serviceInfo = reponseData;
+      if (this.serviceInfo.IsSuccess) {
+        this.treatmentItems = this.serviceInfo.Treatments;
+        let index = 0;
+        while (this.treatmentItems[index]) {
+          if (index >= 16) {
+            break;
+          }
+          this.temp_treatment = this.treatmentItems[index];
+          this.get_service_addOns(this.temp_treatment.ID);
+          this.treatmenst_array.push(new ServiceItem(this.temp_treatment.Name,
+            this.temp_treatment.Description, this.temp_treatment.Price.Amount,
+            this.temp_treatment.ID, this.temp_treatment.TreatmentDuration, this.temp_addon_array));
+          index++;
+        }
+        console.log(this.treatmenst_array);
+        // TODO: iterate over treatmentItems.
+      } else {
+        // TODO: call unsuccessfully
+      }
+    },
+      error => { console.log(error); },
+      () => {
+        this.serviceItems = this.treatmenst_array; });
+  }
+
+  get_service_addOns(serviceId: number) {
+    console.log('addon start');
+    this.appService.onGetServicesAddons(serviceId).subscribe(
+      reponseData => {
+        console.log(reponseData);
+        this.addonInfo = reponseData;
+        this.addonItems = this.addonInfo.Treatments;
+        let index = 0;
+        while (this.addonItems[index]) {
+          this.temp_addon = this.addonItems[index];
+          this.temp_addon_array.push(new AddOn(this.temp_addon.Name, false));
+          index++;
+        }
+       },
+      error => {console.log(error); },
+      () => {});
+    }
+  }

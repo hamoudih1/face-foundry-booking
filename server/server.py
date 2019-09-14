@@ -1,6 +1,7 @@
 from flask import Flask, request,jsonify
 import json
 import requests
+import datetime
 import http.client, urllib.request, urllib.parse, urllib.error, base64
 from flask_cors import CORS
 
@@ -75,6 +76,35 @@ def my_test_endpoint():
     data_json = data.decode('utf-8')
 
     return data_json
+
+@app.route('/location', methods=['POST'])
+def get_location():
+    input_json = request.get_json(force=True)
+    token_string = json.dumps(input_json)
+    token = json.loads(token_string)
+    headers = {
+    # Request headers
+    'Ocp-Apim-Subscription-Key': 'f63a53d55c224054b9396f5cc7ce2813',
+    }
+
+    params = urllib.parse.urlencode({
+        'access_token': token["access_token"]
+    })
+
+    try:
+        conn = http.client.HTTPSConnection('api-staging.booker.com')
+        conn.request("GET", "/v4.1/customer/location/38698?%s" % params, '', headers)
+        response = conn.getresponse()
+        data = response.read()
+        print(data)
+        conn.close()
+    except Exception as e:
+        print("[Errno {0}] {1}".format(e.errno, e.strerror))
+        
+    data_json = data.decode('utf-8')
+
+    return data_json
+
 
 
 @app.route('/login',methods=['POST'])
@@ -155,6 +185,38 @@ def find_treatments():
     return sample_treatments_string
 
 
+@app.route('/addon', methods=['POST'])
+def find_addOns():
+    input_json = request.get_json(force=True)
+    input_string = json.dumps(input_json)
+    input_data = json.loads(input_string)
+    treatment_id = input_data["id"]
+
+    headers = {
+        # Request headers
+        'Ocp-Apim-Subscription-Key': 'f63a53d55c224054b9396f5cc7ce2813',
+    }
+
+
+    params = urllib.parse.urlencode({
+        'access_token': input_data["access_token"]
+    })
+
+    try:
+        conn = http.client.HTTPSConnection('api-staging.booker.com')
+        conn.request(
+            "GET", "/v4.1/customer/treatment/%d/addons?%s" % (treatment_id, params), "", headers)
+        response = conn.getresponse()
+        data = response.read()
+        print(data)
+        conn.close()
+    except Exception as e:
+        print("[Errno {0}] {1}".format(e.errno, e.strerror))
+    
+    addon_string = data.decode('utf-8')
+
+    return addon_string
+
 @app.route('/employees',methods=['POST'])
 def find_employees():
     input_json = request.get_json(force=True)
@@ -199,33 +261,93 @@ def find_employees():
 
     return data_json
 
+@app.route('/time',methods=["POST"])
+def find_time():
+    input_json = request.get_json(force=True)
+    input_string = json.dumps(input_json)
+    input_data = json.loads(input_string)
+    dateTime = datetime.datetime(
+        input_data["fromDateTime"]["year"],
+        input_data["fromDateTime"]["month"],
+        input_data["fromDateTime"]["day"])
+    dateTime.isoformat()
+    location_id = input_data["LocationId"]
+    employee_id = input_data["employeeId"]
+    treatment_id = input_data["serviceId"]
+    access_token = input_data["access_token"]
+
+
+    headers = {
+        # Request headers
+        'Authorization': access_token,
+        'Ocp-Apim-Subscription-Key': 'f63a53d55c224054b9396f5cc7ce2813',
+    }
+
+    params = urllib.parse.urlencode({
+        # Request parameters
+        'LocationId': location_id,
+        'fromDateTime': dateTime,
+        'serviceId[]': treatment_id[0],
+        'employeeId': employee_id,
+    })
+
+    try:
+        conn = http.client.HTTPSConnection('api-staging.booker.com')
+        conn.request("GET", "/v5/realtime_availability/availability/1day/?%s" %
+                    params, "", headers)
+        response = conn.getresponse()
+        data = response.read()
+        print(data)
+        conn.close()
+    except Exception as e:
+        print("[Errno {0}] {1}".format(e.errno, e.strerror))
+
+    data_json = data.decode('utf-8')
+
+    return data_json
+
+
 @app.route('/availabledates',methods=["POST"])
 def return_dates():
-	input_json = request.get_json(force=True)
+    input_json = request.get_json(force=True)
+    input_string = json.dumps(input_json)
+    input_data = json.loads(input_string)
+    fromDate = datetime.datetime.strptime(
+        input_data["fromDateTime"], "%Y-%m-%dT%H:%M:%S%z")
+    toDate = datetime.datetime.strptime(
+        input_data["toDate"], "%Y-%m-%dT%H:%M:%S%z")
 
-	headers = {
-	    # Request headers
-	    'Authorization': input_json['Authorization'],
-	    'Ocp-Apim-Subscription-Key': 'f63a53d55c224054b9396f5cc7ce2813',
-	}
+    headers = {
+        # Request headers
+        'Authorization': input_data['access_token'],
+        'Ocp-Apim-Subscription-Key': 'f63a53d55c224054b9396f5cc7ce2813',
+    }
 
-	params = {
+    params = urllib.parse.urlencode({
 	    # Request parameters
-	    'locationIds': input_json['locationIds'],
-	    'fromDate': '2019-09-03T09:00:00',
-	    'toDate': '2019-09-10T09:00:00',
-	    'categoryIds': None,
-	    'subCategoryIds': None,
-	    'serviceId': input_json['serviceId'],
-	    'employeeId': input_json['employeeId'],
-	    'employeeGenderId': None
-	}
+	    'locationIds': input_data['LocationId'],
+	    'fromDate': fromDate,
+	    'toDate': toDate,
+	    'serviceId': input_data['serviceId'][0],
+	    'employeeId': input_data['employeeId'],
+	})
 
-	r = requests.get('https://api-staging.booker.com/v5/realtime_availability/AvailableDates', params=params, headers=headers) 
-	response = r.json()
-	response_string = json.dumps(response)
+    try:
+        conn = http.client.HTTPSConnection('api-staging.booker.com')
+        conn.request("GET", "/v5/realtime_availability/AvailableDates?%s" %
+                    params, "", headers)
+        response = conn.getresponse()
+        data = response.read()
+        print(data)
+        conn.close()
 
-	return response_string
+
+    except Exception as e:
+        print("[Errno {0}] {1}".format(e.errno, e.strerror))
+
+    data_json = data.decode('utf-8')
+
+    return data_json
 
 @app.route('/book',methods=["POST"])
 def book_appointment():

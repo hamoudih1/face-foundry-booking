@@ -20,12 +20,14 @@ export class StaffComponent implements OnInit {
 
   currentPeopleItem: PeopleItem = new PeopleItem(null, null, null, null, null, false);
 
+  // employee info
+  employee_info: any;
+  temp_employee: any;
+
   constructor(private appService: AppService, private router: Router) { }
 
   ngOnInit() {
-    this.staffItems = this.appService.staffItems;
-    console.log(this.staffItems);
-    
+    this.get_employees();
   }
   onSelectPeople(event: any) {
     this.currentPeopleItem.people = event.target.value;
@@ -82,8 +84,41 @@ export class StaffComponent implements OnInit {
     // };
     // this.appService.onPostStaff(jsonData);
     this.appService.reviewItem.staff = this.currentPeopleItem;
-    this.router.navigate(['/date']); 
+    this.router.navigate(['/date']);
     //this.onPost();
+  }
+
+  get_employees() {
+    this.appService.endpoint = "http://127.0.0.1:5002/employees";
+    const jsonData = {
+      'LocationID': this.appService.reviewItem.location.locationID,
+      // TODO: currently only retrive the first treatment's employee
+      'TreatmentID': this.appService.reviewItem.service[0].treatmentID,
+      'access_token': this.appService.access_token_user
+
+    };
+    this.appService.OnPostEmployee(jsonData).subscribe(reponseData => { 
+      console.log(reponseData);
+      this.employee_info = reponseData;
+      if (this.employee_info.IsSuccess) {
+        let index = 0;
+        while (this.employee_info.Results[index]) {
+          this.temp_employee = this.employee_info.Results[index];
+          this.appService.staffItems.push(new StaffItem(this.temp_employee.FirstName,
+            this.temp_employee.LastName,
+            this.temp_employee.Gender.Name,
+            this.temp_employee.ID));
+          index++;
+        }
+      } else {
+        // TODO: requet not success
+      }
+       },
+      error => {},
+      () => {
+        this.staffItems = this.appService.staffItems;
+        console.log(this.staffItems);
+      });
   }
 
   // async onPost() {
