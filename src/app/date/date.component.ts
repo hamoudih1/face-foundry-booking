@@ -20,6 +20,7 @@ export class DateComponent implements OnInit {
   constructor(private appService: AppService, private router: Router) { }
 
   ngOnInit() {
+    this.get_date();
     this.dates_array = this.appService.dates_array;
 
     this.getDateList(this.dates_array);
@@ -41,7 +42,7 @@ export class DateComponent implements OnInit {
       currentDate =  new NgbDate(0, 0, 0);
     }
 
-    this.dates_list = dates_list    
+    this.dates_list = dates_list;    
   }
 
   setDates(dates_list: NgbDate[]) {
@@ -61,6 +62,16 @@ export class DateComponent implements OnInit {
     //   console.log(this.model);
     // }
     this.appService.reviewItem.date = this.model;
-    this.router.navigate(['/time']); 
+    this.router.navigate(['/time']);
+  }
+
+  get_date() {
+    this.appService.endpoint = "http://127.0.0.1:5002/availabledates"
+    this.appService.onGetDate().subscribe(
+      // TODO: I don't know how to show the available date
+      reponse => {console.log(reponse); },
+      error => {console.log(error); },
+      () => {}
+    );
   }
 }
