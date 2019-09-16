@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreditCardDirectivesModule } from 'angular-cc-library'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ClickOutsideModule } from 'ng-click-outside';
+import { ClickOutsideModule } from 'ng-click-outside'
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
