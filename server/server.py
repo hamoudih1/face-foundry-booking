@@ -362,6 +362,7 @@ def book_appointment():
     })
 
     post_json = json.dumps(input_json)
+    
 
     try:
         conn = http.client.HTTPSConnection('api-staging.booker.com')
@@ -378,14 +379,36 @@ def book_appointment():
     return data_json
 
 
+@app.route('/appointments', methods=["POST"])
+def get_appointments():
+    input_json = request.get_json(force=True)
+    headers = {
+        # Request headers
+        'Content-Type': 'application/json',
+        'Ocp-Apim-Subscription-Key': 'f63a53d55c224054b9396f5cc7ce2813',
+    }
 
 
+    params = urllib.parse.urlencode({
+    })
+
+    post_json = json.dumps(input_json)
+
+    try:
+        conn = http.client.HTTPSConnection('api-staging.booker.com')
+        conn.request("POST", "/v4.1/customer/appointment/appointments?%s" %
+                     params, post_json, headers)
+        response = conn.getresponse()
+        data = response.read()
+        print(data)
+        conn.close()
+    except Exception as e:
+        print("[Errno {0}] {1}".format(e.errno, e.strerror))
 
 
+    data_json = data.decode('utf-8')
 
-
-
-
+    return data_json
 
 
 

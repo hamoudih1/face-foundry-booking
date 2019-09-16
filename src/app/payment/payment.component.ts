@@ -3,6 +3,7 @@ import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CreditCardValidator } from 'angular-cc-library';
 import { AppService } from '../app.service';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-payment',
@@ -11,13 +12,14 @@ import { Router } from '@angular/router';
 })
 export class PaymentComponent implements OnInit {
 
-  @ViewChild('paymentForm', {static : true}) paymentForm: NgForm;
+  @ViewChild('paymentForm', { static: true }) paymentForm: NgForm;
 
   constructor(private appService: AppService, private router: Router) { }
 
   ngOnInit() { }
 
-  onSubmit(form){
+  onSubmit(form) {
+    this.make_appointment();
     console.log(form);
   }
 
@@ -32,9 +34,11 @@ export class PaymentComponent implements OnInit {
       this.appService.reviewItem.date.day,
       current_treatment_hour,
       current_treatment_minute);
-    const postData = {"ItineraryTimeSlotList": [
+    const treatment_moment = moment(current_treatment_date).format();
+    const postData = {
+      "ItineraryTimeSlotList": [
       {
-        "StartDateTimeOffset": current_date.toDateString,
+          "StartDateTimeOffset": treatment_moment,
         "CurrentPackagePrice": {
           // TODO: fix for muti treatment
           "Amount": this.appService.reviewItem.service[0].price,
@@ -45,7 +49,7 @@ export class PaymentComponent implements OnInit {
         "TreatmentTimeSlots": [
           {// TODO: fix for muti treatment
             "TreatmentID": this.appService.reviewItem.service[0].treatmentID,
-            "StartDateTimeOffset": current_treatment_date.toISOString
+            "StartDateTimeOffset": treatment_moment
         }
         ]
       }
@@ -83,7 +87,7 @@ export class PaymentComponent implements OnInit {
       }
     },
     "access_token": this.appService.access_token_user
-  }
+  };
 
     this.appService.onPostPayment(postData).subscribe(
       response => { console.log(response); },

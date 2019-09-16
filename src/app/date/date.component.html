@@ -17,9 +17,9 @@
                         <h3>Available:</h3>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="isGetDate">
                     <div class="col-12">
-                        <ngb-datepicker #dp [(ngModel)]="model" minDate="firstDate" maxDate="lastDate" (navigate)="model = $event.next"></ngb-datepicker>
+                        <ngb-datepicker #dp [(ngModel)]="model" minDate="firstDate" maxDate="lastDate" [markDisabled]="isDisabled" (navigate)="model = $event.next"></ngb-datepicker>
                     </div>
                 </div>
                 <div class="row">

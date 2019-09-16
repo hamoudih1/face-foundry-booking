@@ -86,7 +86,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-button">
-                                        <button type="submit" class="btn btn-primary btn-lg" [disabled]="!paymentForm.valid" routerLink="/thank-you">Pay</button>
+                                        <button type="submit" class="btn btn-primary btn-lg" [disabled]="!paymentForm.valid" routerLink="/thank-you" (click)=onSubmit(paymentForm.value)>Pay</button>
                                     </div>
                                 </div>
                             </div>

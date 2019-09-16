@@ -95,7 +95,7 @@ export class LogInSignUpComponent {
             },
             error => {console.log(error); },
             () => {if (this.isRegistered) {
-              this.signupForm.reset();
+              // this.signupForm.reset();
               this.appService.customerID = this.registerData.CustomerID;
               this.registerDataClear();
               this.routeService.canAdvance();
