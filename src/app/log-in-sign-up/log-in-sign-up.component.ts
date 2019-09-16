@@ -122,4 +122,58 @@ export class LogInSignUpComponent {
         this.loginData = null;
         this.loginError = null;
       }
+      displaySignUpMobile() {
+        this.signupMobile = true;
+        this.loginMobile = false;
+      }
+      displayLoginMobile() {
+        this.loginMobile = true;
+        this.signupMobile = false;
+      }
     }
+      // onSubmitLogin(postData, form: string) {
+      //   let jsonData: any
+    
+      //   if (form == "login") {
+      //     this.appService.endpoint = "http://127.0.0.1:5002/login"
+          
+      //     jsonData = {
+      //       "LocationID": 38698,
+      //       "Email": postData.loginEmail,
+      //       "Password": postData.loginPassword,
+      //       "client_id": "3WCCU4EY81os",
+      //       "client_secret": "ppDcPjF9Ex2G"
+      //     };
+    
+      //     this.appService.onPostLogin(jsonData);
+      //     this.loginForm.reset();
+    
+      //     this.routeService.canAdvance();
+      //     this.router.navigate(['/location']);
+      //   }
+      //   else {
+      //     this.appService.endpoint = "http://127.0.0.1:5002/create";
+    
+      //     jsonData = {
+      //       "Password": postData.signupPassword,
+      //       "FirstName": postData.firstName,
+      //       "LastName": postData.lastName,
+      //       "CellPhone": postData.signupPhone,
+      //       "Email": postData.signupEmail,
+      //       "AllowReceiveEmails": true,
+      //       "AllowReceivePromotionalEmails": true,
+      //       "AllowReceiveSMS": true,
+      //       "RequireCustomerPhone": true,
+      //       "RequireCustomerAddress": true,
+      //       "access_token": this.appService.access_token_user,
+      //       "LocationID": 38698
+      //     };
+    
+      //     this.appService.onPost(jsonData);
+      //     this.signupForm.reset();
+          
+      //     this.routeService.canAdvance();
+      //     this.router.navigate(['/location']);
+      //   }
+    // }
+  
