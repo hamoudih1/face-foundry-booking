@@ -52,3 +52,9 @@
     transform: scale(1.1);
     transition-duration: .3s;
 }
+
+@media(max-width: 767px) {
+    .random {
+        width: 100px;
+    }
+}

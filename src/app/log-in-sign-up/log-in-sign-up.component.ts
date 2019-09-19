@@ -11,6 +11,11 @@ import { RouteService } from '../route.service';
 })
 export class LogInSignUpComponent {
 
+  submit: boolean = false;
+  logFail: boolean = false;
+  signupMobile: boolean = false;
+  loginMobile: boolean = false;
+
   model: any = {};
 
   // register info
@@ -116,5 +121,14 @@ export class LogInSignUpComponent {
       loginDataClear() {
         this.loginData = null;
         this.loginError = null;
+      }
+
+      displaySignUpMobile() {
+        this.signupMobile = true;
+        this.loginMobile = false;
+      }
+      displayLoginMobile() {
+        this.loginMobile = true;
+        this.signupMobile = false;
       }
     }

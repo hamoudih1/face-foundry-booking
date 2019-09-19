@@ -52,6 +52,8 @@ P, input, textarea {
     color: #000;
 }
 .btn-primary:disabled {
+    background-color: #5A5A5A !important;
+    border-color:  #E3E8F3 !important;
     color: #fff !important;
     cursor: auto;
 }
@@ -94,4 +96,14 @@ P, input, textarea {
 .ngb-dp-month {
    width: 100% !important;
    height: 100% !important;
+}
+
+button:ng-disabled:hover {
+    
+}
+
+@media(max-width: 767px) {
+    .app-nav {
+        display: none;
+    }
 }

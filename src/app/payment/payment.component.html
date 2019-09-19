@@ -1,10 +1,10 @@
 <section class="payment-section">
     <div class="container">
         <div class="row">
-            <div class="col-3">
+            <div class="col-md-3 app-nav">
                 <app-navigation></app-navigation>
             </div>
-            <div class="col-9 main">
+            <div class="col-md-9 main">
                 <div class="row">
                     <div class="col-12">
                         <div class="section-header">
@@ -35,11 +35,11 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="expiration">Expiration Date:</label>
                                         <div class="row">
-                                            <div class="col-8">
+                                            <div class="col-6">
                                                 <select class="form-control" name="paymentExpirationMonth" required ngModel #paymentExpirationMonth="ngModel">
                                                     <option value="01">January</option>
                                                     <option value="02">February </option>
@@ -55,7 +55,7 @@
                                                     <option value="12">December</option>
                                                 </select>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-6">
                                                 <select class="form-control" name="paymentExpirationYear" required ngModel #paymentExpirationYear="ngModel">
                                                     <option value="16"> 2019</option>
                                                     <option value="17"> 2020</option>
@@ -75,7 +75,7 @@
                                         && (!paymentExpirationYear.valid && paymentExpirationYear.touched)">Please enter your credit card's expiration date</span>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="security-code">CVC:</label>
                                         <input id="paymentSecurity" type="tel" name="security-code" autocomplete="off" ccCVC class="form-control" required ngModel #paymentSecurity="ngModel">

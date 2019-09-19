@@ -28,21 +28,23 @@ import { ServiceAddOnComponent } from './services/service-add-on/service-add-on.
 
 import { MustMatchDirective } from './validators/must-match.directive';
 import { RouteGuard } from './route.guard';
+import { PhoneDirective } from './validators/phone.directive';
 
 
 //canActivate: [RouteGuard]
 
 const appRoutes: Routes = [
   {path: '', component: WelcomeComponent},
-  {path: 'start', component: LogInSignUpComponent},
-  {path: 'location', component: LocationComponent},
-  {path: 'services', component: ServicesComponent},
-  {path: 'staff', component: StaffComponent},
-  {path: 'date', component: DateComponent},
-  {path: 'time', component: TimeComponent},
-  {path: 'review', component: ReviewComponent},
-  {path: 'payment', component: PaymentComponent},
-  {path: 'thank-you', component: ThankYouComponent},
+  {path: '**', component: WelcomeComponent},
+  {path: 'start', component: LogInSignUpComponent, canActivate: [RouteGuard]},
+  {path: 'location', component: LocationComponent, canActivate: [RouteGuard]},
+  {path: 'services', component: ServicesComponent, canActivate: [RouteGuard]},
+  {path: 'staff', component: StaffComponent, canActivate: [RouteGuard]},
+  {path: 'date', component: DateComponent, canActivate: [RouteGuard]},
+  {path: 'time', component: TimeComponent, canActivate: [RouteGuard]},
+  {path: 'review', component: ReviewComponent, canActivate: [RouteGuard]},
+  {path: 'payment', component: PaymentComponent, canActivate: [RouteGuard]},
+  {path: 'thank-you', component: ThankYouComponent, canActivate: [RouteGuard]}
 ]
 
 @NgModule({
@@ -64,7 +66,8 @@ const appRoutes: Routes = [
     ServiceItemComponent,
     WelcomeComponent,
     MustMatchDirective,
-    ServiceAddOnComponent
+    ServiceAddOnComponent,
+    PhoneDirective
   ],
   imports: [
     BrowserModule,
